@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Practical Todos</title>
+    <link id="favicon" rel="icon" href="https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ffavicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+  </head>
+  <body>
+    <header>
+      <div>
+        Pretty Todo
+      </div>
+    </header>
+    <section class="todoApp">
+      <div id="inputBox">
+        <input id="toggleAllCheckbox" type="checkbox" onclick="handlers.toggleAll()">
+        <input id="addTodoTextInput" type="text" placeholder="Add todo" onkeydown="handlers.addTodo(event)">
+      </div>
+
+      <ul id="todoItems">
+      </ul>
+    </section>
+    <footer id="todoFooter">
+      <span id="itemCount">0</span>
+      <ul id="filters">
+        <li id="filterAll" class="selected">All</li>
+        <li id="filterActive">Active</li>
+        <li id="filterCompleted">Completed</li>
+      </ul>
+      <button id="clearCompleted" onclick="handlers.deleteCompletedTodos()">clear completed</button>
+    </footer>
+    <script src="js/todo-script.js"></script>
+  </body>
+</html>

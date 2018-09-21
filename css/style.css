@@ -1,0 +1,111 @@
+html, body {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  text-align: center;
+  width: 100%;
+  background-color: #f0f8ff;
+}
+
+h1 {
+  font-weight: 100;
+  font-size: 100px;
+}
+
+header {
+  height: 60px;
+  background-color: #04B4AE;
+  color: white;
+  font-size: 2rem;
+  font-family: sans-serif;
+  margin-bottom: 2%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+header div {
+  vertical-align: middle;
+  padding: 10px;
+}
+
+#addTodoTextInput, .todo-item {
+  height: 65px;
+  font-size: 24px;
+}
+
+#addTodoTextInput {
+  width: 80%;
+  border: 1px solid black;
+}
+
+.todo-item {
+  border-bottom: 1px solid black;
+}
+
+#todoItems {
+  background-color: white;
+  display: inline-block;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid black;
+  width: 33%;
+}
+
+#todoItems li {
+  text-align: left;
+  min-height: 65px;
+  height: auto;
+}
+
+#todoItems li button {
+  float: right;
+}
+
+#filters {
+  list-style: none;
+  display: inline-block;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+#filters li {
+  display: inline-block;
+/*   border: 1px solid black; */
+}
+
+.selected {
+  border: 1px solid black;
+}
+
+footer {
+  margin-top: 0px;
+  display: inline-block;
+  background-color: #f00;
+  width: 33%;
+  height: 50px;
+  visibility: hidden;
+}
+
+span {
+  float: left;
+  vertical-align: middle;
+}
+
+#toggleAllCheckbox {
+  visibility: hidden;
+}
+
+#inputBox {
+  display: block;
+  width: 33%;
+  margin: auto;
+  border: 1px solid black;
+  background-color: #fff;
+}
+
+.todoItemCompleted {
+  text-decoration: line-through;
+  color: #d9d9d9;
+}
