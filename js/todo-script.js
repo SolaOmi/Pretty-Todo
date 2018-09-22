@@ -156,13 +156,16 @@ var view = {
   },
   displayToggleAllCheckbox: function() {
     var toggleAllCheckbox = document.getElementById('toggleAllCheckbox');
-    var visibility = toggleAllCheckbox.style.visibility;
+    var shownToggleAllCheckbox = document.getElementById('shownToggleAllCheckbox');
+    var visibility = shownToggleAllCheckbox.style.visibility;
 
     if (visibility === 'visible') {
-      toggleAllCheckbox.style.visibility = 'hidden';
+      shownToggleAllCheckbox.style.visibility = 'hidden';
+      // shownToggleAllCheckbox doesn't have a checked attribute, use the hidden
+      // checkbox when toggling programmatically.
       toggleAllCheckbox.checked = false;
     } else {
-      toggleAllCheckbox.style.visibility = 'visible';
+      shownToggleAllCheckbox.style.visibility = 'visible';
     }
   },
   displayFooter: function() {

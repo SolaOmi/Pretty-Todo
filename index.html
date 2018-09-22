@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Practical Todos</title>
+    <title>Pretty Todo</title>
     <link id="favicon" rel="icon" href="https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Ffavicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css" type="text/css">
   </head>
@@ -13,7 +13,13 @@
     </header>
     <section class="todoApp">
       <div id="inputBox">
-        <input id="toggleAllCheckbox" type="checkbox" onclick="handlers.toggleAll()">
+        <div class="container">
+          <div class="round" id="shownToggleAllCheckbox">
+            <input id="toggleAllCheckbox" type="checkbox" onclick="handlers.toggleAll()">
+            <label for="toggleAllCheckbox"></label>
+          </div>
+        </div>
+        <!-- <input id="toggleAllCheckbox" type="checkbox" onclick="handlers.toggleAll()"> -->
         <input id="addTodoTextInput" type="text" placeholder="Add todo" onkeydown="handlers.addTodo(event)">
       </div>
 
