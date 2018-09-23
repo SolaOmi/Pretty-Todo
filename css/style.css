@@ -44,16 +44,6 @@ header div {
   border-bottom: 1px solid black;
 }
 
-#todoItems {
-  background-color: white;
-  display: inline-block;
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
-  border: 1px solid black;
-  width: 33%;
-}
-
 #todoItems li {
   text-align: left;
   min-height: 65px;
@@ -100,13 +90,26 @@ span {
 
 #inputBox {
   display: grid;
-  grid-template-columns: 1fr 9fr;
+  grid-template-columns: 1fr 8fr 1fr;
   width: 33%;
   margin: 0 auto;
   border: 1px solid black;
   background-color: #fff;
 }
 
+#todoItems {
+  background-color: white;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid black;
+  width: 33%;
+}
+
+#todoItems li {
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+}
 .todoItemCompleted {
   text-decoration: line-through;
   color: #d9d9d9;
