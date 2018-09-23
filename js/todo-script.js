@@ -111,7 +111,7 @@ var view = {
           }
           todoLi.id = position;
 
-          todoLi.appendChild(this.createInputCheckbox(todo.completed));
+          todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
           todoLi.appendChild(this.createTodoTextLabel(todo.todoText));
           todoLi.appendChild(this.createDeleteButton());
           todosUl.appendChild(todoLi);
@@ -125,7 +125,7 @@ var view = {
           todoLi.id = position;
 
           if (todo.completed !== true) {
-            todoLi.appendChild(this.createInputCheckbox(todo.completed));
+            todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
             todoLi.appendChild(this.createTodoTextLabel(todo.todoText));
             todoLi.appendChild(this.createDeleteButton());
             todosUl.appendChild(todoLi);
@@ -140,7 +140,7 @@ var view = {
           todoLi.id = position;
 
           if (todo.completed === true) {
-            todoLi.appendChild(this.createInputCheckbox(todo.completed));
+            todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
             todoLi.appendChild(this.createTodoTextLabel(todo.todoText));
             todoLi.appendChild(this.createDeleteButton());
             todosUl.appendChild(todoLi);
@@ -228,15 +228,48 @@ var view = {
     deleteButton.className = 'deleteButton';
     return deleteButton;
   },
-  createInputCheckbox: function(isChecked) {
+/*
+<div class="container">
+  <div class="round" id="shownToggleAllCheckbox">
+    <input id="toggleAllCheckbox" type="checkbox" onclick="handlers.toggleAll()">
+    <label for="toggleAllCheckbox"></label>
+  </div>
+</div>
+*/
+  createInputCheckbox: function(isChecked, position) {
+    var checkboxContainer = document.createElement('div');
+    checkboxContainer.className = 'container';
+
+    var shownToggleCheckbox = document.createElement('div');
+    shownToggleCheckbox.className = 'round toggleCheckbox';
+    shownToggleCheckbox.id = 'shownToggleCheckbox' + position;
+
     var inputCheckbox = document.createElement('input');
-    inputCheckbox.setAttribute('type', 'checkbox');
+    inputCheckbox.type = 'checkbox';
     inputCheckbox.className = 'toggleCheckbox';
+    inputCheckbox.id = inputCheckbox.className + position;
+
+    var inputLabel = document.createElement('label');
+    inputLabel.htmlFor = inputCheckbox.id;
+
     if (isChecked === true) {
       inputCheckbox.setAttribute('checked', true);
     }
-    return inputCheckbox;
+
+    shownToggleCheckbox.appendChild(inputCheckbox);
+    shownToggleCheckbox.appendChild(inputLabel);
+    checkboxContainer.appendChild(shownToggleCheckbox);
+    return checkboxContainer;
   },
+  // createInputCheckbox: function(isChecked) {
+  //   var inputCheckbox = document.createElement('input');
+  //   inputCheckbox.setAttribute('type', 'checkbox');
+  //   inputCheckbox.className = 'toggleCheckbox';
+  //   if (isChecked === true) {
+  //     inputCheckbox.setAttribute('checked', true);
+  //   }
+  //   return inputCheckbox;
+  // },
   createTodoTextLabel: function(text) {
     var textLabel = document.createElement('label');
     textLabel.textContent = text;
@@ -258,8 +291,14 @@ var view = {
       }
 
       // Check if elementClicked is a checkbox input.
+      /*
+        Element clicked now is the fake div with the class round, not the actual
+        hidden checkbox
+      */
       if (elementClicked.className === 'toggleCheckbox') {
-        let position = parseInt(elementClicked.parentNode.id);
+        // The numbers after shownToggleCheckbox correspons to the position in the todos array.
+        // debugger;
+        let position = parseInt(elementClicked.id.slice("toggleCheckbox".length));
         handlers.toggleCompleted(position);
 
         let toggleAllCheckbox = document.getElementById('toggleAllCheckbox')

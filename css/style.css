@@ -84,7 +84,7 @@ span {
   vertical-align: middle;
 }
 
-#toggleAllCheckbox {
+#toggleAllCheckbox, #shownToggleAllCheckbox {
   visibility: hidden;
 }
 
