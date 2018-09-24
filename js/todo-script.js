@@ -106,9 +106,6 @@ var view = {
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement('li');
           todoLi.classList.add("todo-item");
-        //   if (todo.completed) {
-        //     todoLi.classList.add("todoItemCompleted");
-        //   }
           todoLi.id = position;
 
           todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
@@ -269,6 +266,7 @@ var view = {
   setUpEventListeners: function() {
     var todosUl = document.getElementById('todoItems');
     var filtersUl = document.getElementById('filters');
+    var inputBox = document.getElementById('inputBox');
 
     todosUl.addEventListener('click', function(event) {
       // Get the element that was clicked on.
@@ -290,12 +288,15 @@ var view = {
         let position = parseInt(elementClicked.id.slice("toggleCheckbox".length));
         handlers.toggleCompleted(position);
 
-        let toggleAllCheckbox = document.getElementById('toggleAllCheckbox')
+        let toggleAllCheckbox = document.getElementById('toggleAllCheckbox');
+        let clearAllButon = document.getElementById('clearCompleted');
         if (todoList.todos[position].completed === false) {
           toggleAllCheckbox.checked = false;
+          clearAllButon.style.visibility = 'hidden';
         } else {
           if (todoList.todosCompletedCount() === todoList.todos.length) {
             toggleAllCheckbox.checked = true;
+            clearAllButon.style.visibility = 'visible';
           }
         }
       }
@@ -330,6 +331,20 @@ var view = {
 
       if (elementClicked.id === 'filterCompleted') {
         view.setActiveFilter('filterCompleted');
+      }
+
+      view.displayTodos();
+    });
+
+    inputBox.addEventListener('click', function(event) {
+      let elementClicked = event.target;
+      let clearAllButon = document.getElementById('clearCompleted');
+      console.log(event.target);
+      if (elementClicked.id === 'toggleAllCheckbox' &&
+            todoList.todos.length === todoList.todosCompletedCount()) {
+        clearAllButon.style.visibility = 'visible';
+      } else {
+        clearAllButon.style.visibility = 'hidden';
       }
 
       view.displayTodos();
