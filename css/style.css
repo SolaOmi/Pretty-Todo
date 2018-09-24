@@ -71,9 +71,11 @@ header div {
 }
 
 footer {
-  margin-top: 0px;
-  display: inline-block;
-  background-color: #f00;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  background-color: #fff;
+  border: 1px solid black;
   width: 33%;
   height: 50px;
   visibility: hidden;
