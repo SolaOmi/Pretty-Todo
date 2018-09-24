@@ -110,6 +110,7 @@ span {
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
 }
+
 .todoItemCompleted {
   text-decoration: line-through;
   color: #d9d9d9;

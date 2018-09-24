@@ -106,13 +106,13 @@ var view = {
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement('li');
           todoLi.classList.add("todo-item");
-          if (todo.completed) {
-            todoLi.classList.add("todoItemCompleted");
-          }
+        //   if (todo.completed) {
+        //     todoLi.classList.add("todoItemCompleted");
+        //   }
           todoLi.id = position;
 
           todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
-          todoLi.appendChild(this.createTodoTextLabel(todo.todoText));
+          todoLi.appendChild(this.createTodoTextLabel(todo));
           todoLi.appendChild(this.createDeleteButton());
           todosUl.appendChild(todoLi);
         }, this);
@@ -126,7 +126,7 @@ var view = {
 
           if (todo.completed !== true) {
             todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
-            todoLi.appendChild(this.createTodoTextLabel(todo.todoText));
+            todoLi.appendChild(this.createTodoTextLabel(todo));
             todoLi.appendChild(this.createDeleteButton());
             todosUl.appendChild(todoLi);
           }
@@ -141,7 +141,7 @@ var view = {
 
           if (todo.completed === true) {
             todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
-            todoLi.appendChild(this.createTodoTextLabel(todo.todoText));
+            todoLi.appendChild(this.createTodoTextLabel(todo));
             todoLi.appendChild(this.createDeleteButton());
             todosUl.appendChild(todoLi);
           }
@@ -228,14 +228,6 @@ var view = {
     deleteButton.className = 'deleteButton';
     return deleteButton;
   },
-/*
-<div class="container">
-  <div class="round" id="shownToggleAllCheckbox">
-    <input id="toggleAllCheckbox" type="checkbox" onclick="handlers.toggleAll()">
-    <label for="toggleAllCheckbox"></label>
-  </div>
-</div>
-*/
   createInputCheckbox: function(isChecked, position) {
     var checkboxContainer = document.createElement('div');
     checkboxContainer.className = 'container';
@@ -261,20 +253,17 @@ var view = {
     checkboxContainer.appendChild(shownToggleCheckbox);
     return checkboxContainer;
   },
-  // createInputCheckbox: function(isChecked) {
-  //   var inputCheckbox = document.createElement('input');
-  //   inputCheckbox.setAttribute('type', 'checkbox');
-  //   inputCheckbox.className = 'toggleCheckbox';
-  //   if (isChecked === true) {
-  //     inputCheckbox.setAttribute('checked', true);
-  //   }
-  //   return inputCheckbox;
-  // },
-  createTodoTextLabel: function(text) {
+  createTodoTextLabel: function(todo) {
     var textLabel = document.createElement('label');
-    textLabel.textContent = text;
-    textLabel.setAttribute('contenteditable', true);
+    textLabel.textContent = todo.todoText;
     textLabel.className = 'textLabel';
+
+    if (todo.completed) {
+      textLabel.className += ' todoItemCompleted';
+    } else {
+      textLabel.setAttribute('contenteditable', true);
+    }
+
     return textLabel;
   },
   setUpEventListeners: function() {
