@@ -341,11 +341,9 @@ var view = {
       let clearAllButon = document.getElementById('clearCompleted');
       if (elementClicked.id === 'toggleAllCheckbox' &&
             todoList.todos.length === todoList.todosCompletedCount()) {
-        console.log(1);
         clearAllButon.classList.remove("invisible");
       } else {
         clearAllButon.classList.add("invisible");
-        console.log(2);
       }
 
       view.displayTodos();

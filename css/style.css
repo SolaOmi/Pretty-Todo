@@ -50,10 +50,6 @@ header div {
   height: auto;
 }
 
-#todoItems li button {
-  float: right;
-}
-
 #filters {
   list-style: none;
   display: inline-block;
@@ -73,7 +69,7 @@ header div {
 footer {
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-columns: 3fr 4fr 3fr;
   background-color: #fff;
   border: 1px solid black;
   width: 33%;
@@ -118,10 +114,25 @@ span {
   color: #d9d9d9;
 }
 
-/*#clearCompleted {
-  visibility: hidden;
-}*/
-
 .invisible {
   visibility: hidden;
+}
+
+.deleteButton {
+  font-size: 18px;
+  font-weight: 600;
+  color: #cc9a9a;
+}
+
+.deleteButton:after {
+  content: "x";
+}
+
+.deleteButton:hover {
+  color: #eab8b8;
+}
+
+button {
+  border: 0;
+  background: none;
 }
