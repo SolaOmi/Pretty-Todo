@@ -221,7 +221,7 @@ var view = {
   },
   createDeleteButton: function() {
     var deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
+    deleteButton.textContent = '';
     deleteButton.className = 'deleteButton';
     return deleteButton;
   },
@@ -283,7 +283,7 @@ var view = {
         hidden checkbox
       */
       if (elementClicked.className === 'toggleCheckbox') {
-        // The numbers after shownToggleCheckbox correspons to the position in the todos array.
+        // The numbers after shownToggleCheckbox corresponds to the position in the todos array.
         // debugger;
         let position = parseInt(elementClicked.id.slice("toggleCheckbox".length));
         handlers.toggleCompleted(position);
@@ -292,11 +292,11 @@ var view = {
         let clearAllButon = document.getElementById('clearCompleted');
         if (todoList.todos[position].completed === false) {
           toggleAllCheckbox.checked = false;
-          clearAllButon.style.visibility = 'hidden';
+          clearAllButon.classList.add("invisible");
         } else {
           if (todoList.todosCompletedCount() === todoList.todos.length) {
             toggleAllCheckbox.checked = true;
-            clearAllButon.style.visibility = 'visible';
+            clearAllButon.classList.remove("invisible");
           }
         }
       }
@@ -339,12 +339,13 @@ var view = {
     inputBox.addEventListener('click', function(event) {
       let elementClicked = event.target;
       let clearAllButon = document.getElementById('clearCompleted');
-      console.log(event.target);
       if (elementClicked.id === 'toggleAllCheckbox' &&
             todoList.todos.length === todoList.todosCompletedCount()) {
-        clearAllButon.style.visibility = 'visible';
+        console.log(1);
+        clearAllButon.classList.remove("invisible");
       } else {
-        clearAllButon.style.visibility = 'hidden';
+        clearAllButon.classList.add("invisible");
+        console.log(2);
       }
 
       view.displayTodos();
