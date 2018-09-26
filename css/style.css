@@ -145,3 +145,7 @@ button {
   border: 0;
   background: none;
 }
+
+.textLabel {
+  word-break: break-all;
+}
