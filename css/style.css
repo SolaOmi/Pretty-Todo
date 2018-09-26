@@ -37,17 +37,26 @@ header div {
 }
 
 #addTodoTextInput {
-  border: 1px solid blue;
+  border: none;
 }
 
-.todo-item {
-  border-bottom: 1px solid black;
+#addTodoTextInput:focus {
+  outline: none;
 }
 
 #todoItems li {
   text-align: left;
   min-height: 65px;
   height: auto;
+  border-bottom: 1px solid #ededed;
+}
+
+#todoItems li:first-child {
+  border-top: 1px solid #ededed;
+}
+
+#todoItems li:last-child {
+  border-bottom: none;
 }
 
 #filters {
@@ -59,7 +68,6 @@ header div {
 
 #filters li {
   display: inline-block;
-/*   border: 1px solid black; */
 }
 
 .selected {
@@ -71,10 +79,11 @@ footer {
   display: grid;
   grid-template-columns: 3fr 4fr 3fr;
   background-color: #fff;
-  border: 1px solid black;
   width: 33%;
   height: 50px;
   visibility: hidden;
+  border-top: 1px solid #ededed;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 span {
@@ -91,8 +100,8 @@ span {
   grid-template-columns: 1fr 8fr 1fr;
   width: 33%;
   margin: 0 auto;
-  border: 1px solid black;
   background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 #todoItems {
@@ -100,8 +109,8 @@ span {
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  border: 1px solid black;
   width: 33%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 #todoItems li {
@@ -129,7 +138,7 @@ span {
 }
 
 .deleteButton:hover {
-  color: #eab8b8;
+  color: #bf0000;
 }
 
 button {

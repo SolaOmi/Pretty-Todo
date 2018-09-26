@@ -16,7 +16,7 @@
 }
 
 .round label:after {
-  border: 2px solid #fff;
+  border: 1px solid #04B4AE;
   border-top: none;
   border-right: none;
   content: "";
@@ -34,8 +34,7 @@
 }
 
 .round input[type="checkbox"]:checked + label {
-  background-color: #66bb6a;
-  border-color: #66bb6a;
+  background-color: #fff;
 }
 
 .round input[type="checkbox"]:checked + label:after {
