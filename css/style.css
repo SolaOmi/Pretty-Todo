@@ -40,6 +40,7 @@ header div {
 #addTodoTextInput {
   border: none;
   margin-left: 16px;
+  background-color: #fff;
 }
 
 #addTodoTextInput:focus {
@@ -176,4 +177,8 @@ button:focus {
 
 #clearCompleted:hover {
   text-decoration: underline;
+}
+
+#addTodoTextInput::-webkit-input-placeholder {
+  color: e6e6e6;
 }
