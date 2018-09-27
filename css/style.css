@@ -3,13 +3,14 @@
 html, body {
   padding: 0px;
   margin: 0px;
-  font-family: sans-serif;
 }
 
 body {
   text-align: center;
   width: 100%;
   background-color: #f0f8ff;
+  color: #4d4d4d;
+  font-family: sans-serif;
 }
 
 h1 {
@@ -38,6 +39,7 @@ header div {
 
 #addTodoTextInput {
   border: none;
+  margin-left: 16px;
 }
 
 #addTodoTextInput:focus {
@@ -118,6 +120,7 @@ span {
 #todoItems li {
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
+  align-items: center;
 }
 
 .todoItemCompleted {
@@ -130,7 +133,7 @@ span {
 }
 
 .deleteButton {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: #cc9a9a;
 }
@@ -154,6 +157,8 @@ button:focus {
 
 .textLabel {
   word-break: break-all;
+  font-size: 24px;
+  margin-left: 16px;
 }
 
 #itemCount {
