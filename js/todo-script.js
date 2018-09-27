@@ -149,7 +149,8 @@ var view = {
   },
   displayItemCount: function() {
     var todosItemCount = document.getElementById('itemCount');
-    todosItemCount.textContent =  todoList.todos.length - todoList.todosCompletedCount();
+    todosItemCount.textContent =
+        (todoList.todos.length - todoList.todosCompletedCount()) + " items left";
   },
   displayToggleAllCheckbox: function() {
     var toggleAllCheckbox = document.getElementById('toggleAllCheckbox');

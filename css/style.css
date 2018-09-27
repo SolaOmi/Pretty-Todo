@@ -3,6 +3,7 @@
 html, body {
   padding: 0px;
   margin: 0px;
+  font-family: sans-serif;
 }
 
 body {
@@ -21,7 +22,6 @@ header {
   background-color: #04B4AE;
   color: white;
   font-size: 2rem;
-  font-family: sans-serif;
   margin-bottom: 2%;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
@@ -60,18 +60,19 @@ header div {
 }
 
 #filters {
-  list-style: none;
-  display: inline-block;
+  display: flex;
+  justify-content: space-around;
   margin-left: 0px;
   padding-left: 0px;
 }
 
 #filters li {
   display: inline-block;
+  padding: 4px 8px;
 }
 
 .selected {
-  border: 1px solid black;
+  border: 1px solid #808080;
 }
 
 footer {
@@ -84,6 +85,7 @@ footer {
   visibility: hidden;
   border-top: 1px solid #ededed;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  color: #777;
 }
 
 span {
@@ -146,6 +148,27 @@ button {
   background: none;
 }
 
+button:focus {
+  outline: none;
+}
+
 .textLabel {
   word-break: break-all;
+}
+
+#itemCount {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  margin-left: 20px;
+}
+
+#clearCompleted {
+  display: inline-block;
+  color: inherit;
+  font-size: 16px;
+}
+
+#clearCompleted:hover {
+  text-decoration: underline;
 }
