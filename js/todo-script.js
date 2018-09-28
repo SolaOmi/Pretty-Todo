@@ -50,6 +50,8 @@ var handlers = {
   addTodo: function(event) {
     if (event.key === "Enter") {
       var addTodoTextInput = document.getElementById('addTodoTextInput');
+      let toggleAllCheckbox = document.getElementById('toggleAllCheckbox');
+      let clearAllButon = document.getElementById('clearCompleted');
       // Don't add empty or whitespace only text.
       if (addTodoTextInput.value.trim() !== '') {
         todoList.addTodo(addTodoTextInput.value);
@@ -58,6 +60,8 @@ var handlers = {
         if (todoList.todos.length === 1) {
           view.displayFooterAndToggleAllCheckbox();
         }
+        toggleAllCheckbox.checked = false;
+        clearAllButon.classList.add("invisible");
       }
     }
   },
@@ -353,7 +357,7 @@ var view = {
       if (elementClicked.id === 'toggleAllCheckbox' &&
             todoList.todos.length === todoList.todosCompletedCount()) {
         clearAllButon.classList.remove("invisible");
-      } else {
+      } else if (elementClicked.id === 'toggleAllCheckbox') {
         clearAllButon.classList.add("invisible");
       }
 
