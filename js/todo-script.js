@@ -276,6 +276,16 @@ var view = {
       // Check if elementClicked is a delete button.
       if (elementClicked.className === 'deleteButton') {
         handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+
+        let toggleAllCheckbox = document.getElementById('toggleAllCheckbox');
+        let clearAllButon = document.getElementById('clearCompleted');
+        if (todoList.todosCompletedCount() !== 0 &&
+            todoList.todosCompletedCount() === todoList.todos.length) {
+          toggleAllCheckbox.checked = true;
+          clearAllButon.classList.remove("invisible");
+        } else {
+            toggleAllCheckbox.checked = false;
+        }
       }
 
       // Check if elementClicked is a checkbox input.
