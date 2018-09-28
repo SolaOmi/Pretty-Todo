@@ -10,29 +10,31 @@
         Pretty Todo
       </div>
     </header>
-    <section class="todoApp">
-      <div id="inputBox">
-        <div class="container">
-          <div id="shownToggleAllCheckbox">
-            <input id="toggleAllCheckbox" type="checkbox" onclick="handlers.toggleAll()">
-            <label for="toggleAllCheckbox"></label>
+    <main>
+      <section class="todoApp">
+        <div id="inputBox">
+          <div class="container">
+            <div id="shownToggleAllCheckbox">
+              <input id="toggleAllCheckbox" type="checkbox" onclick="handlers.toggleAll()">
+              <label for="toggleAllCheckbox"></label>
+            </div>
           </div>
+          <input id="addTodoTextInput" type="text" placeholder="Add todo" onkeydown="handlers.addTodo(event)">
         </div>
-        <input id="addTodoTextInput" type="text" placeholder="Add todo" onkeydown="handlers.addTodo(event)">
-      </div>
 
-      <ul id="todoItems">
-      </ul>
-    </section>
-    <footer id="todoFooter">
-      <div id="itemCount"></div>
-      <ul id="filters">
-        <li id="filterAll" class="selected">All</li>
-        <li id="filterActive">Active</li>
-        <li id="filterCompleted">Completed</li>
-      </ul>
-      <button id="clearCompleted" class="invisible" onclick="handlers.deleteCompletedTodos()">Clear completed</button>
-    </footer>
+        <ul id="todoItems">
+        </ul>
+      </section>
+      <footer id="todoFooter">
+        <div id="itemCount"></div>
+        <ul id="filters">
+          <li id="filterAll" class="selected">All</li>
+          <li id="filterActive">Active</li>
+          <li id="filterCompleted">Completed</li>
+        </ul>
+        <button id="clearCompleted" class="invisible" onclick="handlers.deleteCompletedTodos()">Clear completed</button>
+      </footer>
+    </main>
     <script src="js/todo-script.js"></script>
   </body>
 </html>

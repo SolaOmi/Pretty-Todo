@@ -7,10 +7,14 @@ html, body {
 
 body {
   text-align: center;
-  width: 100%;
   background-color: #f0f8ff;
   color: #4d4d4d;
   font-family: sans-serif;
+}
+
+main {
+  max-width: 650px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -83,7 +87,6 @@ footer {
   display: grid;
   grid-template-columns: 3fr 4fr 3fr;
   background-color: #fff;
-  width: 33%;
   height: 50px;
   visibility: hidden;
   border-top: 1px solid #ededed;
@@ -103,7 +106,6 @@ span {
 #inputBox {
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
-  width: 33%;
   margin: 0 auto;
   background-color: #fff;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
@@ -114,7 +116,6 @@ span {
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  width: 33%;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -181,4 +182,10 @@ button:focus {
 
 #addTodoTextInput::-webkit-input-placeholder {
   color: e6e6e6;
+}
+
+@media (max-width: 600px) {
+  footer, #clearCompleted {
+    font-size: 12px;
+  }
 }
