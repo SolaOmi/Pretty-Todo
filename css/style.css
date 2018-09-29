@@ -17,11 +17,6 @@ main {
   margin: 0 auto;
 }
 
-h1 {
-  font-weight: 100;
-  font-size: 100px;
-}
-
 header {
   height: 60px;
   background-color: #04B4AE;
@@ -32,7 +27,6 @@ header {
 }
 
 header div {
-  vertical-align: middle;
   padding: 10px;
 }
 

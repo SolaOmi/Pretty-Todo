@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Pretty Todo</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <header>
-      <div>
-        Pretty Todo
-      </div>
+      <div>Pretty Todo</div>
     </header>
     <main>
       <section class="todoApp">
         <div id="inputBox">
           <div class="container">
             <div id="shownToggleAllCheckbox">
-              <input id="toggleAllCheckbox" type="checkbox" onclick="handlers.toggleAll()">
+              <input id="toggleAllCheckbox"
+                     type="checkbox"
+                     onclick="handlers.toggleAll()">
               <label for="toggleAllCheckbox"></label>
             </div>
           </div>
-          <input id="addTodoTextInput" type="text" placeholder="Add todo" onkeydown="handlers.addTodo(event)">
+          <input id="addTodoTextInput"
+                 type="text"
+                 placeholder="Add todo"
+                 onkeydown="handlers.addTodo(event)">
         </div>
-
-        <ul id="todoItems">
-        </ul>
+        <ul id="todoItems"></ul>
       </section>
       <footer id="todoFooter">
         <div id="itemCount"></div>
@@ -32,7 +34,11 @@
           <li id="filterActive">Active</li>
           <li id="filterCompleted">Completed</li>
         </ul>
-        <button id="clearCompleted" class="invisible" onclick="handlers.deleteCompletedTodos()">Clear completed</button>
+        <button id="clearCompleted"
+                class="invisible"
+                onclick="handlers.deleteCompletedTodos()">
+          Clear completed
+        </button>
       </footer>
     </main>
     <script src="js/todo-script.js"></script>
