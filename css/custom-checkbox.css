@@ -63,7 +63,8 @@ input[type="checkbox"] {
   visibility: hidden;
 }
 
-input[type="checkbox"]:checked + label:after {
+.round input[type="checkbox"]:checked + label:after,
+#shownToggleAllCheckbox input[type="checkbox"]:checked + label:after {
   opacity: 1;
 }
 
