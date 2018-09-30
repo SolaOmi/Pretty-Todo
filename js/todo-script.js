@@ -261,7 +261,7 @@ var view = {
     textLabel.className = 'textLabel';
 
     if (todo.completed) {
-      textLabel.className += ' todoItemCompleted';
+      textLabel.className += ' completed';
     } else {
       textLabel.setAttribute('contenteditable', true);
     }
