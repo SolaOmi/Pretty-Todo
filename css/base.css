@@ -1,55 +1,110 @@
 @import url("custom-checkbox.css");
+/*
+--- TABLE OF CONTENTS ---
+1. HTML/BODY elements & general margin/padding & width/height settings
+2. HEADER element
+3. MAIN element
+   i. Input Box (Uses css grid: 3 columns)
+      a. Toggle all checkbox
+      b. Text Input
+      c. Empty column (included for symmetry with the list of todo items.)
+   ii. Todo items (Uses css grid: 3 columns)
+       a. Toggle completed/uncompleted checkbox
+       b. Todo Text (editable)
+       c. Delete todo button
+4. FOOTER element
+   i. Todo item count (*uncompleted)
+   ii. Filters (All, Active/Uncompleted, Completed)
+   iii. Clear completed button (only appears if every item is completed)
+5. BUTTON element
+6. STATE Classes (classes you toggle on/off to indicate state changes in html
+   elements)
+7. Media queries
+8.
+*/
 
+/* --- 1 --- */
 html, body {
-  padding: 0px;
-  margin: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  text-align: center;
   background-color: #f0f8ff;
   color: #4d4d4d;
   font-family: sans-serif;
+  text-align: center;
 }
 
-main {
-  max-width: 650px;
+main, footer {
   margin: 0 auto;
+  max-width: 650px;
 }
 
+/* --- 2 --- */
 header {
-  height: 60px;
   background-color: #04B4AE;
-  color: white;
-  font-size: 2rem;
-  margin-bottom: 2%;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  color: #fff;
+  font-size: 2rem;
+  height: 60px;
+  margin-bottom: 30px;
 }
 
+/* Can only get the text to center vertically using a div. Why?*/
 header div {
   padding: 10px;
 }
 
-#addTodoTextInput, .todo-item {
-  height: 65px;
-  font-size: 24px;
+/* --- 3 --- */
+/* --- 3.i --- */
+#inputBox {
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  margin: 0 auto;
 }
 
+/* --- 3.i.a --- */
+#toggleAllCheckbox, #shownToggleAllCheckbox {
+  visibility: hidden;
+}
+
+/* --- 3.i.b --- */
 #addTodoTextInput {
+  background-color: #fff;
   border: none;
   margin-left: 16px;
-  background-color: #fff;
 }
 
 #addTodoTextInput:focus {
   outline: none;
 }
 
-#todoItems li {
-  text-align: left;
-  min-height: 65px;
-  height: auto;
+#addTodoTextInput::-webkit-input-placeholder {
+  color: #e6e6e6;
+}
+
+/* --- 3.ii ---*/
+.todoItem {
   border-bottom: 1px solid #ededed;
+  height: auto;
+  text-align: left;
+}
+
+#todoItems {
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#todoItems li {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
 }
 
 #todoItems li:first-child {
@@ -60,6 +115,49 @@ header div {
   border-bottom: none;
 }
 
+/* ---3.ii.b---*/
+.textLabel {
+  font-size: 24px;
+  margin-left: 16px;
+  word-break: break-all;
+}
+
+/* ---3.ii.c--- */
+.deleteButton {
+  color: #cc9a9a;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.deleteButton:after {
+  content: "x";
+}
+
+.deleteButton:hover {
+  color: #bf0000;
+}
+
+/* --- 4 --- */
+footer {
+  background-color: #fff;
+  border-top: 1px solid #ededed;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  color: #777;
+  display: grid;
+  grid-template-columns: 3fr 4fr 3fr;
+  height: 50px;
+  visibility: hidden;
+}
+
+/* ---4.i--- */
+#itemCount {
+  align-items: center;
+  display: flex;
+  margin-left: 20px;
+  text-align: left;
+}
+
+/* ---4.ii--- */
 #filters {
   display: flex;
   justify-content: space-around;
@@ -72,101 +170,10 @@ header div {
   padding: 4px 8px;
 }
 
-.selected {
-  border: 1px solid #808080;
-}
-
-footer {
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 3fr 4fr 3fr;
-  background-color: #fff;
-  height: 50px;
-  visibility: hidden;
-  border-top: 1px solid #ededed;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-  color: #777;
-}
-
-span {
-  float: left;
-  vertical-align: middle;
-}
-
-#toggleAllCheckbox, #shownToggleAllCheckbox {
-  visibility: hidden;
-}
-
-#inputBox {
-  display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
-  margin: 0 auto;
-  background-color: #fff;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
-
-#todoItems {
-  background-color: white;
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
-
-#todoItems li {
-  display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
-  align-items: center;
-}
-
-.todoItemCompleted {
-  text-decoration: line-through;
-  color: #d9d9d9;
-}
-
-.invisible {
-  visibility: hidden;
-}
-
-.deleteButton {
-  font-size: 20px;
-  font-weight: 600;
-  color: #cc9a9a;
-}
-
-.deleteButton:after {
-  content: "x";
-}
-
-.deleteButton:hover {
-  color: #bf0000;
-}
-
-button {
-  border: 0;
-  background: none;
-}
-
-button:focus {
-  outline: none;
-}
-
-.textLabel {
-  word-break: break-all;
-  font-size: 24px;
-  margin-left: 16px;
-}
-
-#itemCount {
-  display: flex;
-  align-items: center;
-  text-align: left;
-  margin-left: 20px;
-}
-
+/* ---4.iii--- */
 #clearCompleted {
-  display: inline-block;
   color: inherit;
+  display: inline-block;
   font-size: 16px;
 }
 
@@ -174,12 +181,39 @@ button:focus {
   text-decoration: underline;
 }
 
-#addTodoTextInput::-webkit-input-placeholder {
-  color: e6e6e6;
+/* ---5--- */
+button {
+  background: none;
+  border: 0;
 }
 
+button:focus {
+  outline: none;
+}
+
+/* ---6--- */
+.invisible {
+  visibility: hidden;
+}
+
+.selected {
+  border: 1px solid #808080;
+}
+
+.todoItemCompleted {
+  color: #d9d9d9;
+  text-decoration: line-through;
+}
+
+/* ---7--- */
 @media (max-width: 600px) {
   footer, #clearCompleted {
     font-size: 12px;
   }
+}
+
+/* Make this into a single class*/
+#addTodoTextInput, .todoItem {
+  font-size: 24px;
+  height: 65px;
 }

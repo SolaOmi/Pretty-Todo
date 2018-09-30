@@ -10,7 +10,7 @@
       <div>Pretty Todo</div>
     </header>
     <main>
-      <section class="todoApp">
+      <section id="todoApp">
         <div id="inputBox">
           <div class="container">
             <div id="shownToggleAllCheckbox">
@@ -27,20 +27,20 @@
         </div>
         <ul id="todoItems"></ul>
       </section>
-      <footer id="todoFooter">
-        <div id="itemCount"></div>
-        <ul id="filters">
-          <li id="filterAll" class="selected">All</li>
-          <li id="filterActive">Active</li>
-          <li id="filterCompleted">Completed</li>
-        </ul>
-        <button id="clearCompleted"
-                class="invisible"
-                onclick="handlers.deleteCompletedTodos()">
-          Clear completed
-        </button>
-      </footer>
     </main>
+    <footer id="todoFooter">
+      <div id="itemCount"></div>
+      <ul id="filters">
+        <li id="filterAll" class="selected">All</li>
+        <li id="filterActive">Active</li>
+        <li id="filterCompleted">Completed</li>
+      </ul>
+      <button id="clearCompleted"
+              class="invisible"
+              onclick="handlers.deleteCompletedTodos()">
+        Clear completed
+      </button>
+    </footer>
     <script src="js/todo-script.js"></script>
   </body>
 </html>

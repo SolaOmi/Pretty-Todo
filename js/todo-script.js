@@ -109,7 +109,7 @@ var view = {
       case 'filterAll':
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement('li');
-          todoLi.classList.add("todo-item");
+          todoLi.classList.add("todoItem");
           todoLi.id = position;
 
           todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
@@ -122,7 +122,7 @@ var view = {
       case 'filterActive':
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement('li');
-          todoLi.classList.add("todo-item");
+          todoLi.classList.add("todoItem");
           todoLi.id = position;
 
           if (todo.completed !== true) {
@@ -137,7 +137,7 @@ var view = {
       case 'filterCompleted':
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement('li');
-          todoLi.classList.add("todo-item");
+          todoLi.classList.add("todoItem");
           todoLi.id = position;
 
           if (todo.completed === true) {
