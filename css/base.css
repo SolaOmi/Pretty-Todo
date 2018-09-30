@@ -19,7 +19,9 @@
 5. BUTTON element
 6. STATE Classes (classes that you toggle on/off to indicate state changes in
    html elements)
-7. Media queries
+7. Style Classes (classes that encapsulate similar styles needed across
+   different html elements)
+8. Media queries
 */
 
 /* --- 1 --- */
@@ -30,7 +32,6 @@ html, body {
 
 body {
   background-color: #f0f8ff;
-  color: #4d4d4d;
   font-family: sans-serif;
   text-align: center;
 }
@@ -55,17 +56,6 @@ header div {
   padding: 10px;
 }
 
-/* --- 3 --- */
-/* --- 3.i --- */
-#inputBox {
-  background-color: #fff;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-  display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
-  height: 65px;
-  margin: 0 auto;
-}
-
 /* --- 3.i.a --- */
 #toggleAllCheckbox, #shownToggleAllCheckbox {
   visibility: hidden;
@@ -75,12 +65,6 @@ header div {
 #addTodoTextInput {
   background-color: #fff;
   border: none;
-  font-size: 24px;
-  margin-left: 16px;
-}
-
-#addTodoTextInput:focus {
-  outline: none;
 }
 
 #addTodoTextInput::-webkit-input-placeholder {
@@ -88,39 +72,14 @@ header div {
 }
 
 /* --- 3.ii ---*/
-.todoItem {
-  border-bottom: 1px solid #ededed;
-  height: 65px;
-  text-align: left;
-}
-
 #todoItems {
-  background-color: white;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-  list-style: none;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
-}
-
-#todoItems li {
-  align-items: center;
-  display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
-}
-
-#todoItems li:first-child {
-  border-top: 1px solid #ededed;
-}
-
-#todoItems li:last-child {
-  border-bottom: none;
 }
 
 /* ---3.ii.b---*/
 .textLabel {
-  font-size: 24px;
-  margin-left: 16px;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 /* ---3.ii.c--- */
@@ -140,9 +99,6 @@ header div {
 
 /* --- 4 --- */
 footer {
-  background-color: #fff;
-  border-top: 1px solid #ededed;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
   color: #777;
   display: grid;
   grid-template-columns: 3fr 4fr 3fr;
@@ -188,10 +144,6 @@ button {
   border: 0;
 }
 
-button:focus {
-  outline: none;
-}
-
 /* ---6--- */
 .invisible {
   visibility: hidden;
@@ -207,6 +159,30 @@ button:focus {
 }
 
 /* ---7--- */
+.bar {
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  min-height: 65px;
+}
+
+.textBar {
+  font-size: 24px;
+  margin-left: 16px;
+  text-align: left;
+}
+
+.todoBackground {
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1)
+}
+
+:focus {
+  outline: none;
+}
+
+/* ---8--- */
 @media (max-width: 600px) {
   footer, #clearCompleted {
     font-size: 12px;

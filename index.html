@@ -11,7 +11,7 @@
     </header>
     <main>
       <section id="todoApp">
-        <div id="inputBox">
+        <div id="inputBox" class="bar todoBackground">
           <div class="container">
             <div id="shownToggleAllCheckbox">
               <input id="toggleAllCheckbox"
@@ -21,14 +21,15 @@
             </div>
           </div>
           <input id="addTodoTextInput"
+                 class="textBar"
                  type="text"
                  placeholder="Add todo"
                  onkeydown="handlers.addTodo(event)">
         </div>
-        <ul id="todoItems"></ul>
+        <ul id="todoItems" class="todoBackground"></ul>
       </section>
     </main>
-    <footer id="todoFooter">
+    <footer id="todoFooter" class="todoBackground">
       <div id="itemCount"></div>
       <ul id="filters">
         <li id="filterAll" class="selected">All</li>
