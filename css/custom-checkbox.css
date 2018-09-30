@@ -1,5 +1,6 @@
 .round, #shownToggleAllCheckbox {
   position: relative;
+  margin-bottom: 35%;
 }
 
 .round label {
@@ -12,7 +13,6 @@
   position: absolute;
   top: 0;
   width: 28px;
-  margin: 10% 0px;
 }
 
 .round label:after {
@@ -30,8 +30,6 @@
 }
 
 #shownToggleAllCheckbox label {
-  /*background-color: #fff;*/
-  /*border: 1px solid #ccc;*/
   font-size: 0px;
   cursor: pointer;
   height: 28px;
@@ -39,7 +37,7 @@
   position: absolute;
   top: 0;
   width: 28px;
-  margin: 10% 0px;
+  margin: 10% 0;
 }
 
 #shownToggleAllCheckbox label:before {
@@ -85,5 +83,4 @@
 
 .container {
   margin: 25% 25%;
-  display: inline-block;
 }
