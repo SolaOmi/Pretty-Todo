@@ -2,12 +2,14 @@
 Seperate css for custom checkboxexs, there is one design for the toggle all
 checkbox and another for the single toggle checkboxes.
 */
-.round, #shownToggleAllCheckbox {
+.round,
+#shownToggleAllCheckbox {
   margin-bottom: 35%;
   position: relative;
 }
 
-.round label, #shownToggleAllCheckbox label {
+.round label,
+#shownToggleAllCheckbox label {
   cursor: pointer;
   height: 28px;
   left: 0;
@@ -36,19 +38,21 @@ checkbox and another for the single toggle checkboxes.
   opacity: 0;
 }
 
-#shownToggleAllCheckbox label:before, #shownToggleAllCheckbox label:after {
+#shownToggleAllCheckbox label:before,
+#shownToggleAllCheckbox label:after {
   height: 8px;
   width: 8px;
 }
 
 .round label:after {
-  border: 1px solid #04B4AE;
+  border: 1px solid #04b4ae;
   height: 6px;
   opacity: 0;
   width: 12px;
 }
 
-#shownToggleAllCheckbox label:before, .round label:after,
+#shownToggleAllCheckbox label:before,
+.round label:after,
 #shownToggleAllCheckbox label:after {
   border-top: none;
   border-right: none;
