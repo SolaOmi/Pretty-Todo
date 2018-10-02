@@ -162,11 +162,12 @@ var view = {
     todosItemCount.textContent =
       todoList.todos.length - todoList.todosCompletedCount() + " items left";
   },
-  displayToggleAllCheckbox: function() {
+  displayFooterAndToggleAllCheckbox: function() {
     var toggleAllCheckbox = document.getElementById("toggleAllCheckbox");
     var shownToggleAllCheckbox = document.getElementById(
       "shownToggleAllCheckbox"
     );
+    var todoFooter = document.getElementById("todoFooter");
     /*
        When toggle removes a class it returns false. The actual checkbox
        (toggleAllCheckbox) should always be unchecked when the fake checkbox
@@ -175,18 +176,11 @@ var view = {
     if (!shownToggleAllCheckbox.classList.toggle("invisible")) {
       toggleAllCheckbox.checked = false;
     }
-  },
-  displayFooter: function() {
-    var todoFooter = document.getElementById("todoFooter");
     todoFooter.classList.toggle("invisible");
   },
   displayTodosAndItemCount: function() {
     this.displayTodos();
     this.displayItemCount();
-  },
-  displayFooterAndToggleAllCheckbox: function() {
-    this.displayFooter();
-    this.displayToggleAllCheckbox();
   },
   getActiveFilter: function() {
     var filterAll = document.getElementById("filterAll");
