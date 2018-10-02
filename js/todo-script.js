@@ -1,3 +1,15 @@
+// Html class attributes
+const BAR = "bar";
+const COMPLETED = "completed";
+const CONTAINER = "container";
+const DELETE_BUTTON = "deleteButton";
+const INVISIBLE = "invisible";
+const ROUND = "round";
+const SELECTED = "selected";
+const TEXT_BAR = "textBar";
+const TEXT_LABEL = "textLabel";
+const TOGGLE_CHECKBOX = "toggleCheckbox";
+
 var todoList = {
   todos: [],
   addTodo: function(todoText) {
@@ -61,7 +73,7 @@ var handlers = {
           view.displayFooterAndToggleAllCheckbox();
         }
         toggleAllCheckbox.checked = false;
-        clearAllButon.classList.add("invisible");
+        clearAllButon.classList.add(INVISIBLE);
       }
     }
   },
@@ -109,7 +121,7 @@ var view = {
       case "filterAll":
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement("li");
-          todoLi.classList.add("bar");
+          todoLi.classList.add(BAR);
           todoLi.id = position;
 
           todoLi.appendChild(
@@ -124,7 +136,7 @@ var view = {
       case "filterActive":
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement("li");
-          todoLi.classList.add("bar");
+          todoLi.classList.add(BAR);
           todoLi.id = position;
 
           if (todo.completed !== true) {
@@ -141,7 +153,7 @@ var view = {
       case "filterCompleted":
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement("li");
-          todoLi.classList.add("bar");
+          todoLi.classList.add(BAR);
           todoLi.id = position;
 
           if (todo.completed === true) {
@@ -173,10 +185,10 @@ var view = {
        (toggleAllCheckbox) should always be unchecked when the fake checkbox
        (shownToggleAllCheckbox) becomes visible.
     */
-    if (!shownToggleAllCheckbox.classList.toggle("invisible")) {
+    if (!shownToggleAllCheckbox.classList.toggle(INVISIBLE)) {
       toggleAllCheckbox.checked = false;
     }
-    todoFooter.classList.toggle("invisible");
+    todoFooter.classList.toggle(INVISIBLE);
   },
   displayTodosAndItemCount: function() {
     this.displayTodos();
@@ -187,9 +199,9 @@ var view = {
     var filterActive = document.getElementById("filterActive");
     var filterCompleted = document.getElementById("filterCompleted");
 
-    if (filterCompleted.classList.contains("selected")) {
+    if (filterCompleted.classList.contains(SELECTED)) {
       return "filterCompleted";
-    } else if (filterActive.classList.contains("selected")) {
+    } else if (filterActive.classList.contains(SELECTED)) {
       return "filterActive";
     } else {
       return "filterAll";
@@ -202,40 +214,40 @@ var view = {
 
     switch (filter) {
       case "filterAll":
-        filterAll.classList.add("selected");
-        filterActive.classList.remove("selected");
-        filterCompleted.classList.remove("selected");
+        filterAll.classList.add(SELECTED);
+        filterActive.classList.remove(SELECTED);
+        filterCompleted.classList.remove(SELECTED);
         break;
       case "filterActive":
-        filterAll.classList.remove("selected");
-        filterActive.classList.add("selected");
-        filterCompleted.classList.remove("selected");
+        filterAll.classList.remove(SELECTED);
+        filterActive.classList.add(SELECTED);
+        filterCompleted.classList.remove(SELECTED);
         break;
       case "filterCompleted":
-        filterAll.classList.remove("selected");
-        filterActive.classList.remove("selected");
-        filterCompleted.classList.add("selected");
+        filterAll.classList.remove(SELECTED);
+        filterActive.classList.remove(SELECTED);
+        filterCompleted.classList.add(SELECTED);
         break;
     }
   },
   createDeleteButton: function() {
     var deleteButton = document.createElement("button");
     deleteButton.textContent = "";
-    deleteButton.className = "deleteButton";
+    deleteButton.classList.add(DELETE_BUTTON);
     return deleteButton;
   },
   createInputCheckbox: function(isChecked, position) {
     var checkboxContainer = document.createElement("div");
-    checkboxContainer.className = "container";
+    checkboxContainer.classList.add(CONTAINER);
 
     var shownToggleCheckbox = document.createElement("div");
-    shownToggleCheckbox.className = "round toggleCheckbox";
+    shownToggleCheckbox.classList.add(ROUND, TOGGLE_CHECKBOX);
     shownToggleCheckbox.id = "shownToggleCheckbox" + position;
 
     var inputCheckbox = document.createElement("input");
     inputCheckbox.type = "checkbox";
-    inputCheckbox.className = "toggleCheckbox";
-    inputCheckbox.id = inputCheckbox.className + position;
+    inputCheckbox.classList.add(TOGGLE_CHECKBOX);
+    inputCheckbox.id = TOGGLE_CHECKBOX + position;
 
     var inputLabel = document.createElement("label");
     inputLabel.htmlFor = inputCheckbox.id;
@@ -252,11 +264,10 @@ var view = {
   createTodoTextLabel: function(todo) {
     var textLabel = document.createElement("label");
     textLabel.textContent = todo.todoText;
-    textLabel.className = "textLabel";
-    textLabel.className += " textBar";
+    textLabel.classList.add(TEXT_LABEL, TEXT_BAR);
 
     if (todo.completed) {
-      textLabel.className += " completed";
+      textLabel.classList.add(COMPLETED);
     } else {
       textLabel.setAttribute("contenteditable", true);
     }
@@ -273,7 +284,7 @@ var view = {
       let elementClicked = event.target;
 
       // Check if elementClicked is a delete button.
-      if (elementClicked.className === "deleteButton") {
+      if (elementClicked.className === DELETE_BUTTON) {
         handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
 
         let toggleAllCheckbox = document.getElementById("toggleAllCheckbox");
@@ -283,7 +294,7 @@ var view = {
           todoList.todosCompletedCount() === todoList.todos.length
         ) {
           toggleAllCheckbox.checked = true;
-          clearAllButon.classList.remove("invisible");
+          clearAllButon.classList.remove(INVISIBLE);
         } else {
           toggleAllCheckbox.checked = false;
         }
@@ -294,11 +305,11 @@ var view = {
         Element clicked now is the fake div with the class round, not the actual
         hidden checkbox
       */
-      if (elementClicked.className === "toggleCheckbox") {
+      if (elementClicked.className === TOGGLE_CHECKBOX) {
         // The numbers after shownToggleCheckbox corresponds to the position in the todos array.
         // debugger;
         let position = parseInt(
-          elementClicked.id.slice("toggleCheckbox".length)
+          elementClicked.id.slice(TOGGLE_CHECKBOX.length)
         );
         handlers.toggleCompleted(position);
 
@@ -306,11 +317,11 @@ var view = {
         let clearAllButon = document.getElementById("clearCompleted");
         if (todoList.todos[position].completed === false) {
           toggleAllCheckbox.checked = false;
-          clearAllButon.classList.add("invisible");
+          clearAllButon.classList.add(INVISIBLE);
         } else {
           if (todoList.todosCompletedCount() === todoList.todos.length) {
             toggleAllCheckbox.checked = true;
-            clearAllButon.classList.remove("invisible");
+            clearAllButon.classList.remove(INVISIBLE);
           }
         }
       }
@@ -319,7 +330,7 @@ var view = {
     todosUl.addEventListener("keydown", function(event) {
       let elementInput = event.target;
 
-      if (elementInput.className === "textLabel" && event.key === "Enter") {
+      if (elementInput.className === TEXT_LABEL && event.key === "Enter") {
         handlers.changeTodo(
           parseInt(elementInput.parentNode.id),
           elementInput.textContent
@@ -330,7 +341,7 @@ var view = {
     todosUl.addEventListener("focusout", function(event) {
       let elementInput = event.target;
 
-      if (elementInput.className === "textLabel") {
+      if (elementInput.className === TEXT_LABEL) {
         handlers.changeTodo(
           parseInt(elementInput.parentNode.id),
           elementInput.textContent
@@ -363,9 +374,9 @@ var view = {
         elementClicked.id === "toggleAllCheckbox" &&
         todoList.todos.length === todoList.todosCompletedCount()
       ) {
-        clearAllButon.classList.remove("invisible");
+        clearAllButon.classList.remove(INVISIBLE);
       } else if (elementClicked.id === "toggleAllCheckbox") {
-        clearAllButon.classList.add("invisible");
+        clearAllButon.classList.add(INVISIBLE);
       }
 
       view.displayTodos();
