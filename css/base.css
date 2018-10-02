@@ -25,7 +25,8 @@
 */
 
 /* --- 1 --- */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -36,15 +37,16 @@ body {
   text-align: center;
 }
 
-main, footer {
+main,
+footer {
   margin: 0 auto;
   max-width: 650px;
 }
 
 /* --- 2 --- */
 header {
-  background-color: #04B4AE;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  background-color: #04b4ae;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   color: #fff;
   font-size: 2rem;
   height: 60px;
@@ -57,7 +59,7 @@ header div {
 }
 
 /* --- 3.i.a --- */
-#toggleAllCheckbox, #shownToggleAllCheckbox {
+#toggleAllCheckbox {
   visibility: hidden;
 }
 
@@ -175,7 +177,7 @@ button {
 
 .todoBackground {
   background-color: #fff;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1)
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 :focus {
@@ -184,7 +186,8 @@ button {
 
 /* ---8--- */
 @media (max-width: 600px) {
-  footer, #clearCompleted {
+  footer,
+  #clearCompleted {
     font-size: 12px;
   }
 }

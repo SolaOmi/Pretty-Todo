@@ -167,15 +167,13 @@ var view = {
     var shownToggleAllCheckbox = document.getElementById(
       "shownToggleAllCheckbox"
     );
-    var visibility = shownToggleAllCheckbox.style.visibility;
-
-    if (visibility === "visible") {
-      shownToggleAllCheckbox.style.visibility = "hidden";
-      // shownToggleAllCheckbox doesn't have a checked attribute, use the hidden
-      // checkbox when toggling programmatically.
+    /*
+       When toggle removes a class it returns false. The actual checkbox
+       (toggleAllCheckbox) should always be unchecked when the fake checkbox
+       (shownToggleAllCheckbox) becomes visible.
+    */
+    if (!shownToggleAllCheckbox.classList.toggle("invisible")) {
       toggleAllCheckbox.checked = false;
-    } else {
-      shownToggleAllCheckbox.style.visibility = "visible";
     }
   },
   displayFooter: function() {
