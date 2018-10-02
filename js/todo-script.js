@@ -6,7 +6,6 @@ const $CLEAR_ALL_BUTTON = document.getElementById("clearCompleted");
 const $FILTER_ACTIVE = document.getElementById("filterActive");
 const $FILTER_ALL = document.getElementById("filterAll");
 const $FILTER_COMPLETED = document.getElementById("filterCompleted");
-const $FILTERS_LIST = document.getElementById("filters");
 const $INPUT_BOX = document.getElementById("inputBox");
 const $SHOWN_TOGGLE_ALL_CHECKBOX = document.getElementById(
   "shownToggleAllCheckbox"
@@ -123,17 +122,19 @@ var handlers = {
   toggleAll: function() {
     todoList.toggleAll();
     view.displayTodosAndItemCount();
+  },
+  displayTodos: function(filterType) {
+    view.displayTodos(filterType);
   }
 };
 
 var view = {
-  displayTodos: function() {
+  displayTodos: function(filterType = $FILTER_ALL.id) {
     $TODO_LIST.innerHTML = "";
-
-    var filterType = this.getActiveFilter();
 
     switch (filterType) {
       case $FILTER_ALL.id:
+        this.setActiveFilter($FILTER_ALL.id);
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement("li");
           todoLi.classList.add(BAR);
@@ -149,6 +150,7 @@ var view = {
 
         break;
       case $FILTER_ACTIVE.id:
+        this.setActiveFilter($FILTER_ACTIVE.id);
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement("li");
           todoLi.classList.add(BAR);
@@ -166,6 +168,7 @@ var view = {
 
         break;
       case $FILTER_COMPLETED.id:
+        this.setActiveFilter($FILTER_COMPLETED.id);
         todoList.todos.forEach(function(todo, position) {
           var todoLi = document.createElement("li");
           todoLi.classList.add(BAR);
@@ -200,7 +203,7 @@ var view = {
     $TODO_FOOTER.classList.toggle(INVISIBLE);
   },
   displayTodosAndItemCount: function() {
-    this.displayTodos();
+    this.displayTodos(this.getActiveFilter());
     this.displayItemCount();
   },
   getActiveFilter: function() {
@@ -341,25 +344,6 @@ var view = {
         );
       }
     });
-
-    $FILTERS_LIST.addEventListener("click", function(event) {
-      let elementClicked = event.target;
-
-      if (elementClicked.id === $FILTER_ALL.id) {
-        view.setActiveFilter($FILTER_ALL.id);
-      }
-
-      if (elementClicked.id === $FILTER_ACTIVE.id) {
-        view.setActiveFilter($FILTER_ACTIVE.id);
-      }
-
-      if (elementClicked.id === $FILTER_COMPLETED.id) {
-        view.setActiveFilter($FILTER_COMPLETED.id);
-      }
-
-      view.displayTodos();
-    });
-
     $INPUT_BOX.addEventListener("click", function(event) {
       let elementClicked = event.target;
       if (
@@ -370,8 +354,6 @@ var view = {
       } else if (elementClicked.id === $TOGGLE_ALL_CHECKBOX.id) {
         $CLEAR_ALL_BUTTON.classList.add(INVISIBLE);
       }
-
-      view.displayTodos();
     });
   }
 };
