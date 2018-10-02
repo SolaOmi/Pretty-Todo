@@ -178,13 +178,7 @@ var view = {
   },
   displayFooter: function() {
     var todoFooter = document.getElementById("todoFooter");
-    var visibility = todoFooter.style.visibility;
-
-    if (visibility === "visible") {
-      todoFooter.style.visibility = "hidden";
-    } else {
-      todoFooter.style.visibility = "visible";
-    }
+    todoFooter.classList.toggle("invisible");
   },
   displayTodosAndItemCount: function() {
     this.displayTodos();
