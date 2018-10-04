@@ -64,15 +64,7 @@ var todoList = {
     });
   },
   todosCompletedCount: function() {
-    var completedTodos = 0;
-
-    this.todos.forEach(function(todo) {
-      if (todo.completed === true) {
-        completedTodos++;
-      }
-    });
-
-    return completedTodos;
+    return this.todos.filter(todo => todo.completed).length;
   }
 };
 
