@@ -71,7 +71,7 @@ var todoList = {
 var handlers = {
   addTodo: function(event) {
     if (event.key === "Enter") {
-      // Don't add empty or whitespace only text.
+      // Don't add empty or whitespace only text to the todoList todos array.
       if ($TEXT_INPUT.value.trim() !== "") {
         todoList.addTodo($TEXT_INPUT.value);
         $TEXT_INPUT.value = "";
@@ -79,6 +79,10 @@ var handlers = {
         if (todoList.todos.length === 1) {
           view.displayFooterAndToggleAllCheckbox();
         }
+        /*
+          All new todos should be uncompleted by default, therfore the
+          toggleAllCheckbox should be unchecked and clear all button hidden.
+        */
         $TOGGLE_ALL_CHECKBOX.checked = false;
         $CLEAR_ALL_BUTTON.classList.add(INVISIBLE);
       }
