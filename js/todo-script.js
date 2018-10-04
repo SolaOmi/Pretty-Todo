@@ -128,6 +128,53 @@ var handlers = {
   }
 };
 
+var htmlCreator = {
+  createDeleteButton: function() {
+    var deleteButton = document.createElement("button");
+    deleteButton.textContent = "";
+    deleteButton.classList.add(DELETE_BUTTON);
+    return deleteButton;
+  },
+  createInputCheckbox: function(isChecked, position) {
+    var checkboxContainer = document.createElement("div");
+    checkboxContainer.classList.add(CONTAINER);
+
+    var shownToggleCheckbox = document.createElement("div");
+    shownToggleCheckbox.classList.add(ROUND, TOGGLE_CHECKBOX);
+    shownToggleCheckbox.id = "shownToggleCheckbox" + position;
+
+    var inputCheckbox = document.createElement("input");
+    inputCheckbox.type = "checkbox";
+    inputCheckbox.classList.add(TOGGLE_CHECKBOX);
+    inputCheckbox.id = TOGGLE_CHECKBOX + position;
+
+    var inputLabel = document.createElement("label");
+    inputLabel.htmlFor = inputCheckbox.id;
+
+    if (isChecked === true) {
+      inputCheckbox.setAttribute("checked", true);
+    }
+
+    shownToggleCheckbox.appendChild(inputCheckbox);
+    shownToggleCheckbox.appendChild(inputLabel);
+    checkboxContainer.appendChild(shownToggleCheckbox);
+    return checkboxContainer;
+  },
+  createTodoTextLabel: function(todo) {
+    var textLabel = document.createElement("label");
+    textLabel.textContent = todo.todoText;
+    textLabel.classList.add(TEXT_LABEL, TEXT_BAR);
+
+    if (todo.completed) {
+      textLabel.classList.add(COMPLETED);
+    } else {
+      textLabel.setAttribute("contenteditable", true);
+    }
+
+    return textLabel;
+  }
+};
+
 var view = {
   displayTodos: function(filterType = $FILTER_ALL.id) {
     $TODO_LIST.innerHTML = "";
@@ -141,10 +188,10 @@ var view = {
           todoLi.id = position;
 
           todoLi.appendChild(
-            this.createInputCheckbox(todo.completed, position)
+            htmlCreator.createInputCheckbox(todo.completed, position)
           );
-          todoLi.appendChild(this.createTodoTextLabel(todo));
-          todoLi.appendChild(this.createDeleteButton());
+          todoLi.appendChild(htmlCreator.createTodoTextLabel(todo));
+          todoLi.appendChild(htmlCreator.createDeleteButton());
           $TODO_LIST.appendChild(todoLi);
         }, this);
 
@@ -158,10 +205,10 @@ var view = {
 
           if (todo.completed !== true) {
             todoLi.appendChild(
-              this.createInputCheckbox(todo.completed, position)
+              htmlCreator.createInputCheckbox(todo.completed, position)
             );
-            todoLi.appendChild(this.createTodoTextLabel(todo));
-            todoLi.appendChild(this.createDeleteButton());
+            todoLi.appendChild(htmlCreator.createTodoTextLabel(todo));
+            todoLi.appendChild(htmlCreator.createDeleteButton());
             $TODO_LIST.appendChild(todoLi);
           }
         }, this);
@@ -176,10 +223,10 @@ var view = {
 
           if (todo.completed === true) {
             todoLi.appendChild(
-              this.createInputCheckbox(todo.completed, position)
+              htmlCreator.createInputCheckbox(todo.completed, position)
             );
-            todoLi.appendChild(this.createTodoTextLabel(todo));
-            todoLi.appendChild(this.createDeleteButton());
+            todoLi.appendChild(htmlCreator.createTodoTextLabel(todo));
+            todoLi.appendChild(htmlCreator.createDeleteButton());
             $TODO_LIST.appendChild(todoLi);
           }
         }, this);
@@ -233,50 +280,6 @@ var view = {
         $FILTER_COMPLETED.classList.add(SELECTED);
         break;
     }
-  },
-  createDeleteButton: function() {
-    var deleteButton = document.createElement("button");
-    deleteButton.textContent = "";
-    deleteButton.classList.add(DELETE_BUTTON);
-    return deleteButton;
-  },
-  createInputCheckbox: function(isChecked, position) {
-    var checkboxContainer = document.createElement("div");
-    checkboxContainer.classList.add(CONTAINER);
-
-    var shownToggleCheckbox = document.createElement("div");
-    shownToggleCheckbox.classList.add(ROUND, TOGGLE_CHECKBOX);
-    shownToggleCheckbox.id = "shownToggleCheckbox" + position;
-
-    var inputCheckbox = document.createElement("input");
-    inputCheckbox.type = "checkbox";
-    inputCheckbox.classList.add(TOGGLE_CHECKBOX);
-    inputCheckbox.id = TOGGLE_CHECKBOX + position;
-
-    var inputLabel = document.createElement("label");
-    inputLabel.htmlFor = inputCheckbox.id;
-
-    if (isChecked === true) {
-      inputCheckbox.setAttribute("checked", true);
-    }
-
-    shownToggleCheckbox.appendChild(inputCheckbox);
-    shownToggleCheckbox.appendChild(inputLabel);
-    checkboxContainer.appendChild(shownToggleCheckbox);
-    return checkboxContainer;
-  },
-  createTodoTextLabel: function(todo) {
-    var textLabel = document.createElement("label");
-    textLabel.textContent = todo.todoText;
-    textLabel.classList.add(TEXT_LABEL, TEXT_BAR);
-
-    if (todo.completed) {
-      textLabel.classList.add(COMPLETED);
-    } else {
-      textLabel.setAttribute("contenteditable", true);
-    }
-
-    return textLabel;
   },
   setUpEventListeners: function() {
     $TODO_LIST.addEventListener("click", function(event) {
