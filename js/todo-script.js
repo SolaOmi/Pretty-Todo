@@ -272,7 +272,10 @@ var view = {
         $FILTER_COMPLETED.classList.add(SELECTED);
         break;
     }
-  },
+  }
+};
+
+const eventListeners = {
   setUpEventListeners: function() {
     $TODO_LIST.addEventListener("click", function(event) {
       // Get the element that was clicked on.
@@ -295,9 +298,9 @@ var view = {
 
       // Check if elementClicked is a checkbox input.
       /*
-        Element clicked now is the fake div with the class round, not the actual
-        hidden checkbox
-      */
+          Element clicked now is the fake div with the class round, not the actual
+          hidden checkbox
+        */
       if (elementClicked.className === TOGGLE_CHECKBOX) {
         // The numbers after shownToggleCheckbox corresponds to the position in the todos array.
         // debugger;
@@ -353,4 +356,4 @@ var view = {
   }
 };
 
-view.setUpEventListeners();
+eventListeners.setUpEventListeners();
