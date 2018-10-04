@@ -172,6 +172,16 @@ var htmlCreator = {
     }
 
     return textLabel;
+  },
+  createTodoListItem: function(todo, position) {
+    let todoLi = document.createElement("li");
+    todoLi.classList.add(BAR);
+    todoLi.id = position;
+
+    todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
+    todoLi.appendChild(this.createTodoTextLabel(todo));
+    todoLi.appendChild(this.createDeleteButton());
+    return todoLi;
   }
 };
 
@@ -182,52 +192,34 @@ var view = {
     switch (filterType) {
       case $FILTER_ALL.id:
         this.setActiveFilter($FILTER_ALL.id);
-        todoList.todos.forEach(function(todo, position) {
-          var todoLi = document.createElement("li");
-          todoLi.classList.add(BAR);
-          todoLi.id = position;
 
-          todoLi.appendChild(
-            htmlCreator.createInputCheckbox(todo.completed, position)
+        todoList.todos.forEach(function(todo, position) {
+          $TODO_LIST.appendChild(
+            htmlCreator.createTodoListItem(todo, position)
           );
-          todoLi.appendChild(htmlCreator.createTodoTextLabel(todo));
-          todoLi.appendChild(htmlCreator.createDeleteButton());
-          $TODO_LIST.appendChild(todoLi);
         }, this);
 
         break;
       case $FILTER_ACTIVE.id:
         this.setActiveFilter($FILTER_ACTIVE.id);
-        todoList.todos.forEach(function(todo, position) {
-          var todoLi = document.createElement("li");
-          todoLi.classList.add(BAR);
-          todoLi.id = position;
 
-          if (todo.completed !== true) {
-            todoLi.appendChild(
-              htmlCreator.createInputCheckbox(todo.completed, position)
+        todoList.todos.forEach(function(todo, position) {
+          if (todo.completed === false) {
+            $TODO_LIST.appendChild(
+              htmlCreator.createTodoListItem(todo, position)
             );
-            todoLi.appendChild(htmlCreator.createTodoTextLabel(todo));
-            todoLi.appendChild(htmlCreator.createDeleteButton());
-            $TODO_LIST.appendChild(todoLi);
           }
         }, this);
 
         break;
       case $FILTER_COMPLETED.id:
         this.setActiveFilter($FILTER_COMPLETED.id);
-        todoList.todos.forEach(function(todo, position) {
-          var todoLi = document.createElement("li");
-          todoLi.classList.add(BAR);
-          todoLi.id = position;
 
+        todoList.todos.forEach(function(todo, position) {
           if (todo.completed === true) {
-            todoLi.appendChild(
-              htmlCreator.createInputCheckbox(todo.completed, position)
+            $TODO_LIST.appendChild(
+              htmlCreator.createTodoListItem(todo, position)
             );
-            todoLi.appendChild(htmlCreator.createTodoTextLabel(todo));
-            todoLi.appendChild(htmlCreator.createDeleteButton());
-            $TODO_LIST.appendChild(todoLi);
           }
         }, this);
 
