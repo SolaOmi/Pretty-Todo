@@ -1,16 +1,16 @@
-const clearAllBtn = document.getElementById("clearCompleted");
-const filterActive = document.getElementById("filterActive");
-const filterAll = document.getElementById("filterAll");
-const filterCompleted = document.getElementById("filterCompleted");
-const inputBox = document.getElementById("inputBox");
-const shownToggleAllCheckbox = document.getElementById(
-  "shownToggleAllCheckbox"
-);
-const textInput = document.getElementById("addTodoTextInput");
-const todoFooter = document.getElementById("todoFooter");
-const todoItemCount = document.getElementById("itemCount");
-const todoUl = document.getElementById("todoItems");
-const toggleAllCheckbox = document.getElementById("toggleAllCheckbox");
+const byId = id => document.getElementById(id);
+
+const clearAllBtn = byId("clearCompleted");
+const filterActive = byId("filterActive");
+const filterAll = byId("filterAll");
+const filterCompleted = byId("filterCompleted");
+const inputBox = byId("inputBox");
+const shownToggleAllCheckbox = byId("shownToggleAllCheckbox");
+const textInput = byId("addTodoTextInput");
+const todoFooter = byId("todoFooter");
+const todoItemCount = byId("itemCount");
+const todoUl = byId("todoItems");
+const toggleAllCheckbox = byId("toggleAllCheckbox");
 
 // Html class attributes
 const BAR = "bar";
@@ -186,9 +186,7 @@ var view = {
         this.setActiveFilter(filterAll.id);
 
         todoList.todos.forEach(function(todo, position) {
-          todoUl.appendChild(
-            htmlCreator.createTodoListItem(todo, position)
-          );
+          todoUl.appendChild(htmlCreator.createTodoListItem(todo, position));
         }, this);
 
         break;
@@ -197,9 +195,7 @@ var view = {
 
         todoList.todos.forEach(function(todo, position) {
           if (todo.completed === false) {
-            todoUl.appendChild(
-              htmlCreator.createTodoListItem(todo, position)
-            );
+            todoUl.appendChild(htmlCreator.createTodoListItem(todo, position));
           }
         }, this);
 
@@ -209,9 +205,7 @@ var view = {
 
         todoList.todos.forEach(function(todo, position) {
           if (todo.completed === true) {
-            todoUl.appendChild(
-              htmlCreator.createTodoListItem(todo, position)
-            );
+            todoUl.appendChild(htmlCreator.createTodoListItem(todo, position));
           }
         }, this);
 
