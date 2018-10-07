@@ -12,18 +12,6 @@ const todoItemCount = byId("itemCount");
 const todoUl = byId("todoItems");
 const toggleAllCheckbox = byId("toggleAllCheckbox");
 
-// Html class attributes
-const BAR = "bar";
-const COMPLETED = "completed";
-const CONTAINER = "container";
-const DELETE_BUTTON = "deleteButton";
-const INVISIBLE = "invisible";
-const ROUND = "round";
-const SELECTED = "selected";
-const TEXT_BAR = "textBar";
-const TEXT_LABEL = "textLabel";
-const TOGGLE_CHECKBOX = "toggleCheckbox";
-
 var todoList = {
   todos: [],
   addTodo: function(todoText) {
@@ -80,7 +68,7 @@ var handlers = {
           toggleAllCheckbox should be unchecked and clear all button hidden.
         */
         toggleAllCheckbox.checked = false;
-        clearAllBtn.classList.add(INVISIBLE);
+        clearAllBtn.classList.add("invisible");
       }
     }
   },
@@ -124,21 +112,21 @@ var htmlCreator = {
   createDeleteButton: function() {
     var deleteButton = document.createElement("button");
     deleteButton.textContent = "";
-    deleteButton.classList.add(DELETE_BUTTON);
+    deleteButton.classList.add("deleteButton");
     return deleteButton;
   },
   createInputCheckbox: function(isChecked, position) {
     var checkboxContainer = document.createElement("div");
-    checkboxContainer.classList.add(CONTAINER);
+    checkboxContainer.classList.add("container");
 
     var shownToggleCheckbox = document.createElement("div");
-    shownToggleCheckbox.classList.add(ROUND, TOGGLE_CHECKBOX);
+    shownToggleCheckbox.classList.add("round", "toggleCheckbox");
     shownToggleCheckbox.id = "shownToggleCheckbox" + position;
 
     var inputCheckbox = document.createElement("input");
     inputCheckbox.type = "checkbox";
-    inputCheckbox.classList.add(TOGGLE_CHECKBOX);
-    inputCheckbox.id = TOGGLE_CHECKBOX + position;
+    inputCheckbox.classList.add("toggleCheckbox");
+    inputCheckbox.id = "toggleCheckbox" + position;
 
     var inputLabel = document.createElement("label");
     inputLabel.htmlFor = inputCheckbox.id;
@@ -155,10 +143,10 @@ var htmlCreator = {
   createTodoTextLabel: function(todo) {
     var textLabel = document.createElement("label");
     textLabel.textContent = todo.todoText;
-    textLabel.classList.add(TEXT_LABEL, TEXT_BAR);
+    textLabel.classList.add("textLabel", "textBar");
 
     if (todo.completed) {
-      textLabel.classList.add(COMPLETED);
+      textLabel.classList.add("completed");
     } else {
       textLabel.setAttribute("contenteditable", true);
     }
@@ -167,7 +155,7 @@ var htmlCreator = {
   },
   createTodoListItem: function(todo, position) {
     let todoLi = document.createElement("li");
-    todoLi.classList.add(BAR);
+    todoLi.classList.add("bar");
     todoLi.id = position;
 
     todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
@@ -222,19 +210,19 @@ var view = {
        (toggleAllCheckbox) should always be unchecked when the fake checkbox
        (shownToggleAllCheckbox) becomes visible.
     */
-    if (!shownToggleAllCheckbox.classList.toggle(INVISIBLE)) {
+    if (!shownToggleAllCheckbox.classList.toggle("invisible")) {
       toggleAllCheckbox.checked = false;
     }
-    todoFooter.classList.toggle(INVISIBLE);
+    todoFooter.classList.toggle("invisible");
   },
   displayTodosAndItemCount: function() {
     this.displayTodos(this.getActiveFilter());
     this.displayItemCount();
   },
   getActiveFilter: function() {
-    if (filterCompleted.classList.contains(SELECTED)) {
+    if (filterCompleted.classList.contains("selected")) {
       return filterCompleted.id;
-    } else if (filterActive.classList.contains(SELECTED)) {
+    } else if (filterActive.classList.contains("selected")) {
       return filterActive.id;
     } else {
       return filterAll.id;
@@ -243,19 +231,19 @@ var view = {
   setActiveFilter: function(filter) {
     switch (filter) {
       case filterAll.id:
-        filterAll.classList.add(SELECTED);
-        filterActive.classList.remove(SELECTED);
-        filterCompleted.classList.remove(SELECTED);
+        filterAll.classList.add("selected");
+        filterActive.classList.remove("selected");
+        filterCompleted.classList.remove("selected");
         break;
       case filterActive.id:
-        filterAll.classList.remove(SELECTED);
-        filterActive.classList.add(SELECTED);
-        filterCompleted.classList.remove(SELECTED);
+        filterAll.classList.remove("selected");
+        filterActive.classList.add("selected");
+        filterCompleted.classList.remove("selected");
         break;
       case filterCompleted.id:
-        filterAll.classList.remove(SELECTED);
-        filterActive.classList.remove(SELECTED);
-        filterCompleted.classList.add(SELECTED);
+        filterAll.classList.remove("selected");
+        filterActive.classList.remove("selected");
+        filterCompleted.classList.add("selected");
         break;
     }
   }
@@ -268,7 +256,7 @@ const eventListeners = {
       let elementClicked = event.target;
 
       // Check if elementClicked is a delete button.
-      if (elementClicked.className === DELETE_BUTTON) {
+      if (elementClicked.className === "deleteButton") {
         handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
 
         if (
@@ -276,7 +264,7 @@ const eventListeners = {
           todoList.todosCompletedCount() === todoList.todos.length
         ) {
           toggleAllCheckbox.checked = true;
-          clearAllBtn.classList.remove(INVISIBLE);
+          clearAllBtn.classList.remove("invisible");
         } else {
           toggleAllCheckbox.checked = false;
         }
@@ -287,21 +275,21 @@ const eventListeners = {
           Element clicked now is the fake div with the class round, not the actual
           hidden checkbox
         */
-      if (elementClicked.className === TOGGLE_CHECKBOX) {
+      if (elementClicked.className === "toggleCheckbox") {
         // The numbers after shownToggleCheckbox corresponds to the position in the todos array.
         // debugger;
         let position = parseInt(
-          elementClicked.id.slice(TOGGLE_CHECKBOX.length)
+          elementClicked.id.slice("toggleCheckbox".length)
         );
         handlers.toggleCompleted(position);
 
         if (todoList.todos[position].completed === false) {
           toggleAllCheckbox.checked = false;
-          clearAllBtn.classList.add(INVISIBLE);
+          clearAllBtn.classList.add("invisible");
         } else {
           if (todoList.todosCompletedCount() === todoList.todos.length) {
             toggleAllCheckbox.checked = true;
-            clearAllBtn.classList.remove(INVISIBLE);
+            clearAllBtn.classList.remove("invisible");
           }
         }
       }
@@ -310,7 +298,7 @@ const eventListeners = {
     todoUl.addEventListener("keydown", function(event) {
       let elementInput = event.target;
 
-      if (elementInput.className === TEXT_LABEL && event.key === "Enter") {
+      if (elementInput.className === "textLabel" && event.key === "Enter") {
         handlers.changeTodo(
           parseInt(elementInput.parentNode.id),
           elementInput.textContent
@@ -321,7 +309,7 @@ const eventListeners = {
     todoUl.addEventListener("focusout", function(event) {
       let elementInput = event.target;
 
-      if (elementInput.className === TEXT_LABEL) {
+      if (elementInput.className === "textLabel") {
         handlers.changeTodo(
           parseInt(elementInput.parentNode.id),
           elementInput.textContent
@@ -334,9 +322,9 @@ const eventListeners = {
         elementClicked.id === toggleAllCheckbox.id &&
         todoList.todos.length === todoList.todosCompletedCount()
       ) {
-        clearAllBtn.classList.remove(INVISIBLE);
+        clearAllBtn.classList.remove("invisible");
       } else if (elementClicked.id === toggleAllCheckbox.id) {
-        clearAllBtn.classList.add(INVISIBLE);
+        clearAllBtn.classList.add("invisible");
       }
     });
   }
