@@ -1,20 +1,16 @@
-/*
-   I borrowed the jquery $ syntax to differentiate between regular javascript
-   variables and DOM variables, but there is no jquery at all in this project.
-*/
-const $CLEAR_ALL_BUTTON = document.getElementById("clearCompleted");
-const $FILTER_ACTIVE = document.getElementById("filterActive");
-const $FILTER_ALL = document.getElementById("filterAll");
-const $FILTER_COMPLETED = document.getElementById("filterCompleted");
-const $INPUT_BOX = document.getElementById("inputBox");
-const $SHOWN_TOGGLE_ALL_CHECKBOX = document.getElementById(
+const clearAllBtn = document.getElementById("clearCompleted");
+const filterActive = document.getElementById("filterActive");
+const filterAll = document.getElementById("filterAll");
+const filterCompleted = document.getElementById("filterCompleted");
+const inputBox = document.getElementById("inputBox");
+const shownToggleAllCheckbox = document.getElementById(
   "shownToggleAllCheckbox"
 );
-const $TEXT_INPUT = document.getElementById("addTodoTextInput");
-const $TODO_FOOTER = document.getElementById("todoFooter");
-const $TODO_ITEM_COUNT = document.getElementById("itemCount");
-const $TODO_LIST = document.getElementById("todoItems");
-const $TOGGLE_ALL_CHECKBOX = document.getElementById("toggleAllCheckbox");
+const textInput = document.getElementById("addTodoTextInput");
+const todoFooter = document.getElementById("todoFooter");
+const todoItemCount = document.getElementById("itemCount");
+const todoUl = document.getElementById("todoItems");
+const toggleAllCheckbox = document.getElementById("toggleAllCheckbox");
 
 // Html class attributes
 const BAR = "bar";
@@ -72,9 +68,9 @@ var handlers = {
   addTodo: function(event) {
     if (event.key === "Enter") {
       // Don't add empty or whitespace only text to the todoList todos array.
-      if ($TEXT_INPUT.value.trim() !== "") {
-        todoList.addTodo($TEXT_INPUT.value);
-        $TEXT_INPUT.value = "";
+      if (textInput.value.trim() !== "") {
+        todoList.addTodo(textInput.value);
+        textInput.value = "";
         view.displayTodosAndItemCount();
         if (todoList.todos.length === 1) {
           view.displayFooterAndToggleAllCheckbox();
@@ -83,8 +79,8 @@ var handlers = {
           All new todos should be uncompleted by default, therfore the
           toggleAllCheckbox should be unchecked and clear all button hidden.
         */
-        $TOGGLE_ALL_CHECKBOX.checked = false;
-        $CLEAR_ALL_BUTTON.classList.add(INVISIBLE);
+        toggleAllCheckbox.checked = false;
+        clearAllBtn.classList.add(INVISIBLE);
       }
     }
   },
@@ -182,38 +178,38 @@ var htmlCreator = {
 };
 
 var view = {
-  displayTodos: function(filterType = $FILTER_ALL.id) {
-    $TODO_LIST.innerHTML = "";
+  displayTodos: function(filterType = filterAll.id) {
+    todoUl.innerHTML = "";
 
     switch (filterType) {
-      case $FILTER_ALL.id:
-        this.setActiveFilter($FILTER_ALL.id);
+      case filterAll.id:
+        this.setActiveFilter(filterAll.id);
 
         todoList.todos.forEach(function(todo, position) {
-          $TODO_LIST.appendChild(
+          todoUl.appendChild(
             htmlCreator.createTodoListItem(todo, position)
           );
         }, this);
 
         break;
-      case $FILTER_ACTIVE.id:
-        this.setActiveFilter($FILTER_ACTIVE.id);
+      case filterActive.id:
+        this.setActiveFilter(filterActive.id);
 
         todoList.todos.forEach(function(todo, position) {
           if (todo.completed === false) {
-            $TODO_LIST.appendChild(
+            todoUl.appendChild(
               htmlCreator.createTodoListItem(todo, position)
             );
           }
         }, this);
 
         break;
-      case $FILTER_COMPLETED.id:
-        this.setActiveFilter($FILTER_COMPLETED.id);
+      case filterCompleted.id:
+        this.setActiveFilter(filterCompleted.id);
 
         todoList.todos.forEach(function(todo, position) {
           if (todo.completed === true) {
-            $TODO_LIST.appendChild(
+            todoUl.appendChild(
               htmlCreator.createTodoListItem(todo, position)
             );
           }
@@ -224,48 +220,48 @@ var view = {
   },
   displayItemCount: function() {
     let itemCount = todoList.todos.length - todoList.todosCompletedCount();
-    $TODO_ITEM_COUNT.textContent = itemCount + " items left";
+    todoItemCount.textContent = itemCount + " items left";
   },
   displayFooterAndToggleAllCheckbox: function() {
     /*
        When toggle removes a class it returns false. The actual checkbox
-       ($TOGGLE_ALL_CHECKBOX) should always be unchecked when the fake checkbox
-       ($SHOWN_TOGGLE_ALL_CHECKBOX) becomes visible.
+       (toggleAllCheckbox) should always be unchecked when the fake checkbox
+       (shownToggleAllCheckbox) becomes visible.
     */
-    if (!$SHOWN_TOGGLE_ALL_CHECKBOX.classList.toggle(INVISIBLE)) {
-      $TOGGLE_ALL_CHECKBOX.checked = false;
+    if (!shownToggleAllCheckbox.classList.toggle(INVISIBLE)) {
+      toggleAllCheckbox.checked = false;
     }
-    $TODO_FOOTER.classList.toggle(INVISIBLE);
+    todoFooter.classList.toggle(INVISIBLE);
   },
   displayTodosAndItemCount: function() {
     this.displayTodos(this.getActiveFilter());
     this.displayItemCount();
   },
   getActiveFilter: function() {
-    if ($FILTER_COMPLETED.classList.contains(SELECTED)) {
-      return $FILTER_COMPLETED.id;
-    } else if ($FILTER_ACTIVE.classList.contains(SELECTED)) {
-      return $FILTER_ACTIVE.id;
+    if (filterCompleted.classList.contains(SELECTED)) {
+      return filterCompleted.id;
+    } else if (filterActive.classList.contains(SELECTED)) {
+      return filterActive.id;
     } else {
-      return $FILTER_ALL.id;
+      return filterAll.id;
     }
   },
   setActiveFilter: function(filter) {
     switch (filter) {
-      case $FILTER_ALL.id:
-        $FILTER_ALL.classList.add(SELECTED);
-        $FILTER_ACTIVE.classList.remove(SELECTED);
-        $FILTER_COMPLETED.classList.remove(SELECTED);
+      case filterAll.id:
+        filterAll.classList.add(SELECTED);
+        filterActive.classList.remove(SELECTED);
+        filterCompleted.classList.remove(SELECTED);
         break;
-      case $FILTER_ACTIVE.id:
-        $FILTER_ALL.classList.remove(SELECTED);
-        $FILTER_ACTIVE.classList.add(SELECTED);
-        $FILTER_COMPLETED.classList.remove(SELECTED);
+      case filterActive.id:
+        filterAll.classList.remove(SELECTED);
+        filterActive.classList.add(SELECTED);
+        filterCompleted.classList.remove(SELECTED);
         break;
-      case $FILTER_COMPLETED.id:
-        $FILTER_ALL.classList.remove(SELECTED);
-        $FILTER_ACTIVE.classList.remove(SELECTED);
-        $FILTER_COMPLETED.classList.add(SELECTED);
+      case filterCompleted.id:
+        filterAll.classList.remove(SELECTED);
+        filterActive.classList.remove(SELECTED);
+        filterCompleted.classList.add(SELECTED);
         break;
     }
   }
@@ -273,7 +269,7 @@ var view = {
 
 const eventListeners = {
   setUpEventListeners: function() {
-    $TODO_LIST.addEventListener("click", function(event) {
+    todoUl.addEventListener("click", function(event) {
       // Get the element that was clicked on.
       let elementClicked = event.target;
 
@@ -285,10 +281,10 @@ const eventListeners = {
           todoList.todosCompletedCount() !== 0 &&
           todoList.todosCompletedCount() === todoList.todos.length
         ) {
-          $TOGGLE_ALL_CHECKBOX.checked = true;
-          $CLEAR_ALL_BUTTON.classList.remove(INVISIBLE);
+          toggleAllCheckbox.checked = true;
+          clearAllBtn.classList.remove(INVISIBLE);
         } else {
-          $TOGGLE_ALL_CHECKBOX.checked = false;
+          toggleAllCheckbox.checked = false;
         }
       }
 
@@ -306,18 +302,18 @@ const eventListeners = {
         handlers.toggleCompleted(position);
 
         if (todoList.todos[position].completed === false) {
-          $TOGGLE_ALL_CHECKBOX.checked = false;
-          $CLEAR_ALL_BUTTON.classList.add(INVISIBLE);
+          toggleAllCheckbox.checked = false;
+          clearAllBtn.classList.add(INVISIBLE);
         } else {
           if (todoList.todosCompletedCount() === todoList.todos.length) {
-            $TOGGLE_ALL_CHECKBOX.checked = true;
-            $CLEAR_ALL_BUTTON.classList.remove(INVISIBLE);
+            toggleAllCheckbox.checked = true;
+            clearAllBtn.classList.remove(INVISIBLE);
           }
         }
       }
     });
 
-    $TODO_LIST.addEventListener("keydown", function(event) {
+    todoUl.addEventListener("keydown", function(event) {
       let elementInput = event.target;
 
       if (elementInput.className === TEXT_LABEL && event.key === "Enter") {
@@ -328,7 +324,7 @@ const eventListeners = {
       }
     });
 
-    $TODO_LIST.addEventListener("focusout", function(event) {
+    todoUl.addEventListener("focusout", function(event) {
       let elementInput = event.target;
 
       if (elementInput.className === TEXT_LABEL) {
@@ -338,15 +334,15 @@ const eventListeners = {
         );
       }
     });
-    $INPUT_BOX.addEventListener("click", function(event) {
+    inputBox.addEventListener("click", function(event) {
       let elementClicked = event.target;
       if (
-        elementClicked.id === $TOGGLE_ALL_CHECKBOX.id &&
+        elementClicked.id === toggleAllCheckbox.id &&
         todoList.todos.length === todoList.todosCompletedCount()
       ) {
-        $CLEAR_ALL_BUTTON.classList.remove(INVISIBLE);
-      } else if (elementClicked.id === $TOGGLE_ALL_CHECKBOX.id) {
-        $CLEAR_ALL_BUTTON.classList.add(INVISIBLE);
+        clearAllBtn.classList.remove(INVISIBLE);
+      } else if (elementClicked.id === toggleAllCheckbox.id) {
+        clearAllBtn.classList.add(INVISIBLE);
       }
     });
   }
