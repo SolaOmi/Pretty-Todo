@@ -29,6 +29,9 @@ var todoList = {
   deleteCompletedTodos: function() {
     this.todos = this.todos.filter(todo => todo.completed === false);
   },
+  isAllCompleted: function() {
+    return this.todos.length === this.todosCompletedCount();
+  },
   toggleCompleted: function(position) {
     var todo = this.todos[position];
     todo.completed = !todo.completed;
