@@ -112,7 +112,7 @@ var htmlCreator = {
   createDeleteButton: function() {
     var deleteButton = document.createElement("button");
     deleteButton.textContent = "";
-    deleteButton.classList.add("deleteButton");
+    deleteButton.classList.add("deleteBtn");
     return deleteButton;
   },
   createInputCheckbox: function(isChecked, position) {
@@ -256,7 +256,7 @@ const eventListeners = {
       let elementClicked = event.target;
 
       // Check if elementClicked is a delete button.
-      if (elementClicked.className === "deleteButton") {
+      if (elementClicked.className === "deleteBtn") {
         handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
 
         if (

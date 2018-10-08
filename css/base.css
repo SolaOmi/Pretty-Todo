@@ -80,17 +80,17 @@ header div {
 }
 
 /* ---3.ii.c--- */
-.deleteButton {
+.deleteBtn {
   color: #cc9a9a;
   font-size: 20px;
   font-weight: 600;
 }
 
-.deleteButton:after {
+.deleteBtn:after {
   content: "x";
 }
 
-.deleteButton:hover {
+.deleteBtn:hover {
   color: #bf0000;
 }
 
