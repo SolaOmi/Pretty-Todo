@@ -229,23 +229,19 @@ var view = {
     }
   },
   setActiveFilter: function(filter) {
-    switch (filter) {
-      case filterAll.id:
-        filterAll.classList.add("selected");
-        filterActive.classList.remove("selected");
-        filterCompleted.classList.remove("selected");
-        break;
-      case filterActive.id:
-        filterAll.classList.remove("selected");
-        filterActive.classList.add("selected");
-        filterCompleted.classList.remove("selected");
-        break;
-      case filterCompleted.id:
-        filterAll.classList.remove("selected");
-        filterActive.classList.remove("selected");
-        filterCompleted.classList.add("selected");
-        break;
+    filterAll.classList.remove("selected");
+    filterActive.classList.remove("selected");
+    filterCompleted.classList.remove("selected");
+
+    if (filterAll.id === filter) {
+      return filterAll.classList.add("selected");
     }
+
+    if (filterActive.id === filter) {
+      return filterActive.classList.add("selected");
+    }
+
+    return filterCompleted.classList.add("selected");
   }
 };
 
