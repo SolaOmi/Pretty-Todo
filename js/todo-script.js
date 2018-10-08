@@ -1,6 +1,7 @@
 const byId = id => document.getElementById(id);
 
 const clearAllBtn = byId("clearCompleted");
+const filters = byId("filters");
 const filterActive = byId("filterActive");
 const filterAll = byId("filterAll");
 const filterCompleted = byId("filterCompleted");
@@ -304,6 +305,7 @@ const eventListeners = {
         );
       }
     });
+
     inputBox.addEventListener("click", function(event) {
       let elementClicked = event.target;
       if (
@@ -313,6 +315,22 @@ const eventListeners = {
         clearAllBtn.classList.remove("invisible");
       } else if (elementClicked.id === toggleAllCheckbox.id) {
         clearAllBtn.classList.add("invisible");
+      }
+    });
+
+    filters.addEventListener("click", function(event) {
+      let elementClicked = event.target;
+
+      if (elementClicked.id === filterAll.id) {
+        return handlers.displayTodos();
+      }
+
+      if (elementClicked.id === filterActive.id) {
+        return handlers.displayTodos("filterActive");
+      }
+
+      if (elementClicked.id === filterCompleted.id) {
+        return handlers.displayTodos("filterCompleted");
       }
     });
   }
