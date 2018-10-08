@@ -222,11 +222,13 @@ var view = {
   getActiveFilter: function() {
     if (filterCompleted.classList.contains("selected")) {
       return filterCompleted.id;
-    } else if (filterActive.classList.contains("selected")) {
-      return filterActive.id;
-    } else {
-      return filterAll.id;
     }
+
+    if (filterActive.classList.contains("selected")) {
+      return filterActive.id;
+    }
+
+    return filterAll.id;
   },
   setActiveFilter: function(filter) {
     filterAll.classList.remove("selected");
