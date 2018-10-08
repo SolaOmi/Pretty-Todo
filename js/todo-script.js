@@ -37,7 +37,7 @@ var todoList = {
     todo.completed = !todo.completed;
   },
   toggleAll: function() {
-    const isAllCompleted = this.todos.length === this.todosCompletedCount();
+    const isAllCompleted = this.isAllCompleted();
     this.todos.forEach(todo => (todo.completed = !isAllCompleted));
   },
   todosCompletedCount: function() {
@@ -250,10 +250,7 @@ const eventListeners = {
       if (elementClicked.className === "deleteBtn") {
         handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
 
-        if (
-          todoList.todosCompletedCount() !== 0 &&
-          todoList.todosCompletedCount() === todoList.todos.length
-        ) {
+        if (todoList.todosCompletedCount() !== 0 && todoList.isAllCompleted()) {
           toggleAllCheckbox.checked = true;
           clearAllBtn.classList.remove("invisible");
         } else {
@@ -278,7 +275,7 @@ const eventListeners = {
           toggleAllCheckbox.checked = false;
           clearAllBtn.classList.add("invisible");
         } else {
-          if (todoList.todosCompletedCount() === todoList.todos.length) {
+          if (todoList.isAllCompleted()) {
             toggleAllCheckbox.checked = true;
             clearAllBtn.classList.remove("invisible");
           }
@@ -311,7 +308,7 @@ const eventListeners = {
       let elementClicked = event.target;
       if (
         elementClicked.id === toggleAllCheckbox.id &&
-        todoList.todos.length === todoList.todosCompletedCount()
+        todoList.isAllCompleted()
       ) {
         clearAllBtn.classList.remove("invisible");
       } else if (elementClicked.id === toggleAllCheckbox.id) {
