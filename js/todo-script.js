@@ -34,18 +34,8 @@ var todoList = {
     todo.completed = !todo.completed;
   },
   toggleAll: function() {
-    var totalTodos = this.todos.length;
-    var completedTodos = this.todosCompletedCount();
-
-    this.todos.forEach(function(todo) {
-      // Case 1: If everything's true, make everything false.
-      if (completedTodos === totalTodos) {
-        todo.completed = false;
-        // Case 2: Otherwise, make everything true.
-      } else {
-        todo.completed = true;
-      }
-    });
+    const isAllCompleted = this.todos.length === this.todosCompletedCount();
+    this.todos.forEach(todo => (todo.completed = !isAllCompleted));
   },
   todosCompletedCount: function() {
     return this.todos.filter(todo => todo.completed).length;
