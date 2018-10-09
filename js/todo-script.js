@@ -1,4 +1,6 @@
+// Helper functions
 const byId = id => document.getElementById(id);
+const createElem = elem => document.createElement(elem);
 
 const clearAllBtn = byId("clearCompleted");
 const filters = byId("filters");
@@ -104,25 +106,25 @@ const handlers = {
 
 const htmlCreator = {
   createDeleteButton: function() {
-    let deleteButton = document.createElement("button");
+    let deleteButton = createElem("button");
     deleteButton.textContent = "";
     deleteButton.classList.add("deleteBtn");
     return deleteButton;
   },
   createInputCheckbox: function(isChecked, position) {
-    let checkboxContainer = document.createElement("div");
+    let checkboxContainer = createElem("div");
     checkboxContainer.classList.add("container");
 
-    let shownToggleCheckbox = document.createElement("div");
+    let shownToggleCheckbox = createElem("div");
     shownToggleCheckbox.classList.add("round", "toggleCheckbox");
     shownToggleCheckbox.id = "shownToggleCheckbox" + position;
 
-    let inputCheckbox = document.createElement("input");
+    let inputCheckbox = createElem("input");
     inputCheckbox.type = "checkbox";
     inputCheckbox.classList.add("toggleCheckbox");
     inputCheckbox.id = "toggleCheckbox" + position;
 
-    let inputLabel = document.createElement("label");
+    let inputLabel = createElem("label");
     inputLabel.htmlFor = inputCheckbox.id;
 
     if (isChecked === true) {
@@ -135,7 +137,7 @@ const htmlCreator = {
     return checkboxContainer;
   },
   createTodoTextLabel: function(todo) {
-    let textLabel = document.createElement("label");
+    let textLabel = createElem("label");
     textLabel.textContent = todo.todoText;
     textLabel.classList.add("textLabel", "textBar");
 
@@ -148,7 +150,7 @@ const htmlCreator = {
     return textLabel;
   },
   createTodoListItem: function(todo, position) {
-    let todoLi = document.createElement("li");
+    let todoLi = createElem("li");
     todoLi.classList.add("bar");
     todoLi.id = position;
 
