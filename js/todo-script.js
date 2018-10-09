@@ -245,22 +245,11 @@ const eventListeners = {
   inputBoxEventListeners: function() {
     toggleAllCheckbox.addEventListener("click", function() {
       handlers.toggleAll();
+      clearAllBtn.classList.toggle("invisible");
     });
 
     textInput.addEventListener("keydown", function(event) {
       handlers.addTodo(event);
-    });
-
-    inputBox.addEventListener("click", function(event) {
-      let elementClicked = event.target;
-      if (
-        elementClicked.id === toggleAllCheckbox.id &&
-        todoList.isAllCompleted()
-      ) {
-        clearAllBtn.classList.remove("invisible");
-      } else if (elementClicked.id === toggleAllCheckbox.id) {
-        clearAllBtn.classList.add("invisible");
-      }
     });
   },
   todoListEventListeners: function() {
