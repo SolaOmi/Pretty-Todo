@@ -13,7 +13,7 @@ const todoItemCount = byId("itemCount");
 const todoUl = byId("todoItems");
 const toggleAllCheckbox = byId("toggleAllCheckbox");
 
-var todoList = {
+const todoList = {
   todos: [],
   addTodo: function(todoText) {
     this.todos.push({
@@ -34,11 +34,11 @@ var todoList = {
     return this.todos.length === this.todosCompletedCount();
   },
   toggleCompleted: function(position) {
-    var todo = this.todos[position];
+    let todo = this.todos[position];
     todo.completed = !todo.completed;
   },
   toggleAll: function() {
-    const isAllCompleted = this.isAllCompleted();
+    let isAllCompleted = this.isAllCompleted();
     this.todos.forEach(todo => (todo.completed = !isAllCompleted));
   },
   todosCompletedCount: function() {
@@ -46,7 +46,7 @@ var todoList = {
   }
 };
 
-var handlers = {
+const handlers = {
   addTodo: function(event) {
     if (event.key === "Enter") {
       // Don't add empty or whitespace only text to the todoList todos array.
@@ -102,27 +102,27 @@ var handlers = {
   }
 };
 
-var htmlCreator = {
+const htmlCreator = {
   createDeleteButton: function() {
-    var deleteButton = document.createElement("button");
+    let deleteButton = document.createElement("button");
     deleteButton.textContent = "";
     deleteButton.classList.add("deleteBtn");
     return deleteButton;
   },
   createInputCheckbox: function(isChecked, position) {
-    var checkboxContainer = document.createElement("div");
+    let checkboxContainer = document.createElement("div");
     checkboxContainer.classList.add("container");
 
-    var shownToggleCheckbox = document.createElement("div");
+    let shownToggleCheckbox = document.createElement("div");
     shownToggleCheckbox.classList.add("round", "toggleCheckbox");
     shownToggleCheckbox.id = "shownToggleCheckbox" + position;
 
-    var inputCheckbox = document.createElement("input");
+    let inputCheckbox = document.createElement("input");
     inputCheckbox.type = "checkbox";
     inputCheckbox.classList.add("toggleCheckbox");
     inputCheckbox.id = "toggleCheckbox" + position;
 
-    var inputLabel = document.createElement("label");
+    let inputLabel = document.createElement("label");
     inputLabel.htmlFor = inputCheckbox.id;
 
     if (isChecked === true) {
@@ -135,7 +135,7 @@ var htmlCreator = {
     return checkboxContainer;
   },
   createTodoTextLabel: function(todo) {
-    var textLabel = document.createElement("label");
+    let textLabel = document.createElement("label");
     textLabel.textContent = todo.todoText;
     textLabel.classList.add("textLabel", "textBar");
 
@@ -159,7 +159,7 @@ var htmlCreator = {
   }
 };
 
-var view = {
+const view = {
   displayTodos: function(filterType = filterAll.id) {
     todoUl.innerHTML = "";
 
