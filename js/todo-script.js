@@ -341,6 +341,10 @@ const eventListeners = {
     toggleAllCheckbox.addEventListener("click", function() {
       handlers.toggleAll();
     });
+
+    textInput.addEventListener("keydown", function(event) {
+      handlers.addTodo(event);
+    });
   }
 };
 
