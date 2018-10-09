@@ -307,8 +307,7 @@ const eventListeners = {
 
     todoUl.addEventListener("focusout", function(event) {
       let elementInput = event.target;
-
-      if (elementInput.className === "textLabel") {
+      if (elementInput.classList.contains("textLabel")) {
         handlers.changeTodo(
           parseInt(elementInput.parentNode.id),
           elementInput.textContent
