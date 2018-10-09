@@ -76,7 +76,14 @@ header div {
 
 /* ---3.ii.b---*/
 .textLabel {
+  align-self: stretch;
+  align-items: center;
+  display: flex;
   word-break: break-word;
+}
+
+.textLabel:focus {
+  outline: solid 1px #33b5e5;
 }
 
 /* ---3.ii.c--- */
