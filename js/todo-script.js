@@ -258,7 +258,7 @@ const eventListeners = {
       let elementClicked = event.target;
 
       // Check if elementClicked is a delete button.
-      if (elementClicked.className === "deleteBtn") {
+      if (elementClicked.classList.contains("deleteBtn")) {
         handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
 
         if (todoList.todosCompletedCount() !== 0 && todoList.isAllCompleted()) {
@@ -274,7 +274,7 @@ const eventListeners = {
             Element clicked now is the fake div with the class round, not the actual
             hidden checkbox
           */
-      if (elementClicked.className === "toggleCheckbox") {
+      if (elementClicked.classList.contains("toggleCheckbox")) {
         // The numbers after shownToggleCheckbox corresponds to the position in the todos array.
         // debugger;
         let position = parseInt(
