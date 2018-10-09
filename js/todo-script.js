@@ -242,7 +242,28 @@ var view = {
 };
 
 const eventListeners = {
-  setUpEventListeners: function() {
+  inputBoxEventListeners: function() {
+    toggleAllCheckbox.addEventListener("click", function() {
+      handlers.toggleAll();
+    });
+
+    textInput.addEventListener("keydown", function(event) {
+      handlers.addTodo(event);
+    });
+
+    inputBox.addEventListener("click", function(event) {
+      let elementClicked = event.target;
+      if (
+        elementClicked.id === toggleAllCheckbox.id &&
+        todoList.isAllCompleted()
+      ) {
+        clearAllBtn.classList.remove("invisible");
+      } else if (elementClicked.id === toggleAllCheckbox.id) {
+        clearAllBtn.classList.add("invisible");
+      }
+    });
+  },
+  todoListEventListeners: function() {
     todoUl.addEventListener("click", function(event) {
       // Get the element that was clicked on.
       let elementClicked = event.target;
@@ -261,9 +282,9 @@ const eventListeners = {
 
       // Check if elementClicked is a checkbox input.
       /*
-          Element clicked now is the fake div with the class round, not the actual
-          hidden checkbox
-        */
+            Element clicked now is the fake div with the class round, not the actual
+            hidden checkbox
+          */
       if (elementClicked.className === "toggleCheckbox") {
         // The numbers after shownToggleCheckbox corresponds to the position in the todos array.
         // debugger;
@@ -305,19 +326,8 @@ const eventListeners = {
         );
       }
     });
-
-    inputBox.addEventListener("click", function(event) {
-      let elementClicked = event.target;
-      if (
-        elementClicked.id === toggleAllCheckbox.id &&
-        todoList.isAllCompleted()
-      ) {
-        clearAllBtn.classList.remove("invisible");
-      } else if (elementClicked.id === toggleAllCheckbox.id) {
-        clearAllBtn.classList.add("invisible");
-      }
-    });
-
+  },
+  footerEventListeners: function() {
     filters.addEventListener("click", function(event) {
       let elementClicked = event.target;
 
@@ -337,14 +347,11 @@ const eventListeners = {
     clearAllBtn.addEventListener("click", function() {
       handlers.deleteCompletedTodos();
     });
-
-    toggleAllCheckbox.addEventListener("click", function() {
-      handlers.toggleAll();
-    });
-
-    textInput.addEventListener("keydown", function(event) {
-      handlers.addTodo(event);
-    });
+  },
+  setUpEventListeners: function() {
+    this.inputBoxEventListeners();
+    this.todoListEventListeners();
+    this.footerEventListeners();
   }
 };
 
