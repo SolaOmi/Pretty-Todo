@@ -337,6 +337,10 @@ const eventListeners = {
     clearAllBtn.addEventListener("click", function() {
       handlers.deleteCompletedTodos();
     });
+
+    toggleAllCheckbox.addEventListener("click", function() {
+      handlers.toggleAll();
+    });
   }
 };
 
