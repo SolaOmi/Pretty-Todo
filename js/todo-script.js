@@ -297,7 +297,10 @@ const eventListeners = {
     todoUl.addEventListener("keydown", function(event) {
       let elementInput = event.target;
 
-      if (elementInput.className === "textLabel" && event.key === "Enter") {
+      if (
+        elementInput.classList.contains("textLabel") &&
+        event.key === "Enter"
+      ) {
         handlers.changeTodo(
           parseInt(elementInput.parentNode.id),
           elementInput.textContent
