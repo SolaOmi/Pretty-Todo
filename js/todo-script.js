@@ -333,6 +333,10 @@ const eventListeners = {
         return handlers.displayTodos("filterCompleted");
       }
     });
+
+    clearAllBtn.addEventListener("click", function() {
+      handlers.deleteCompletedTodos();
+    });
   }
 };
 
