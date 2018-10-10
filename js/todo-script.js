@@ -131,26 +131,18 @@ const htmlCreator = {
     checkboxContainer.appendChild(shownToggleCheckbox);
     return checkboxContainer;
   },
-  createTodoTextLabel: function(todo) {
-    let textLabel = createElem("label");
-    textLabel.textContent = todo.todoText;
-    textLabel.classList.add("textLabel", "textBar");
-
-    if (todo.completed) {
-      textLabel.classList.add("completed");
-    } else {
-      textLabel.setAttribute("contenteditable", true);
-    }
-
-    return textLabel;
-  },
+  createTodoTextLabel: todo => `
+    ${todo.completed ?
+      `<label class="textLabel textBar completed">${todo.todoText}<label>` :
+      `<label class="textLabel textBar" contenteditable="true">${todo.todoText}<label>`
+    }`,
   createTodoListItem: function(todo, position) {
     let todoLi = createElem("li");
     todoLi.classList.add("bar");
     todoLi.id = position;
 
     todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
-    todoLi.appendChild(this.createTodoTextLabel(todo));
+    todoLi.innerHTML += this.createTodoTextLabel(todo);
     todoLi.innerHTML += this.createDeleteButton();
     return todoLi;
   }
