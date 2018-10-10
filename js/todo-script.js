@@ -122,7 +122,7 @@ const htmlCreator = {
   createTodoListItem: function(todo, position) {
     let todoLi = createElem("li");
     todoLi.classList.add("bar");
-    todoLi.id = position;
+    todoLi.id = `todo${position}`;
 
     todoLi.innerHTML = this.createInputCheckbox(todo.completed, position);
     todoLi.innerHTML += this.createTodoTextLabel(todo);
@@ -231,7 +231,7 @@ const eventListeners = {
 
       // Check if elementClicked is a delete button.
       if (elementClicked.classList.contains("deleteBtn")) {
-        handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+        handlers.deleteTodo(parseInt(elementClicked.parentNode.id.slice("todo".length)));
 
         if (todoList.todosCompletedCount() !== 0 && todoList.isAllCompleted()) {
           toggleAllCheckbox.checked = true;
@@ -273,7 +273,7 @@ const eventListeners = {
         event.key === "Enter"
       ) {
         handlers.changeTodo(
-          parseInt(elementInput.parentNode.id),
+          parseInt(elementInput.parentNode.id.slice("todo".length)),
           elementInput.textContent
         );
       }
@@ -283,7 +283,7 @@ const eventListeners = {
       let elementInput = event.target;
       if (elementInput.classList.contains("textLabel")) {
         handlers.changeTodo(
-          parseInt(elementInput.parentNode.id),
+          parseInt(elementInput.parentNode.id.slice("todo".length)),
           elementInput.textContent
         );
       }
