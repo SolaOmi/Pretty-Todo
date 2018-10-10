@@ -106,32 +106,15 @@ const handlers = {
 
 const htmlCreator = {
   createDeleteButton: () => `<button class="deleteBtn"></button>`,
-  createInputCheckbox: function(isChecked, position) {
-    let checkboxContainer = createElem("div");
-    checkboxContainer.classList.add("container");
-
-    let shownToggleCheckbox = createElem("div");
-    shownToggleCheckbox.classList.add("round", "toggleCheckbox");
-    shownToggleCheckbox.id = "shownToggleCheckbox" + position;
-
-    let inputCheckbox = createElem("input");
-    inputCheckbox.type = "checkbox";
-    inputCheckbox.classList.add("toggleCheckbox");
-    inputCheckbox.id = "toggleCheckbox" + position;
-
-    let inputLabel = createElem("label");
-    inputLabel.htmlFor = inputCheckbox.id;
-
-    if (isChecked === true) {
-      inputCheckbox.setAttribute("checked", true);
-    }
-
-    shownToggleCheckbox.appendChild(inputCheckbox);
-    shownToggleCheckbox.appendChild(inputLabel);
-    checkboxContainer.appendChild(shownToggleCheckbox);
-    return checkboxContainer;
-  },
-  createTodoTextLabel: todo => `
+  createInputCheckbox: (isChecked, position) => `
+    <div class="container">
+      <div class="round toggleCheckbox" id="shownToggleCheckbox${position}">
+        <input type="checkbox"  ${isChecked ? `checked` : ``}
+               class="toggleCheckbox" id="toggleCheckbox${position}">
+        <label for="toggleCheckbox${position}"></label>
+      </div>
+    </div>`,
+  createTodoTextLabel: (todo) => `
     ${todo.completed ?
       `<label class="textLabel textBar completed">${todo.todoText}<label>` :
       `<label class="textLabel textBar" contenteditable="true">${todo.todoText}<label>`
@@ -141,7 +124,7 @@ const htmlCreator = {
     todoLi.classList.add("bar");
     todoLi.id = position;
 
-    todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
+    todoLi.innerHTML = this.createInputCheckbox(todo.completed, position);
     todoLi.innerHTML += this.createTodoTextLabel(todo);
     todoLi.innerHTML += this.createDeleteButton();
     return todoLi;
@@ -270,7 +253,6 @@ const eventListeners = {
           elementClicked.id.slice("toggleCheckbox".length)
         );
         handlers.toggleCompleted(position);
-
         if (todoList.todos[position].completed === false) {
           toggleAllCheckbox.checked = false;
           clearAllBtn.classList.add("invisible");
