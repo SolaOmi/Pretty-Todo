@@ -105,12 +105,7 @@ const handlers = {
 };
 
 const htmlCreator = {
-  createDeleteButton: function() {
-    let deleteButton = createElem("button");
-    deleteButton.textContent = "";
-    deleteButton.classList.add("deleteBtn");
-    return deleteButton;
-  },
+  createDeleteButton: () => `<button class="deleteBtn"></button>`,
   createInputCheckbox: function(isChecked, position) {
     let checkboxContainer = createElem("div");
     checkboxContainer.classList.add("container");
@@ -156,7 +151,7 @@ const htmlCreator = {
 
     todoLi.appendChild(this.createInputCheckbox(todo.completed, position));
     todoLi.appendChild(this.createTodoTextLabel(todo));
-    todoLi.appendChild(this.createDeleteButton());
+    todoLi.innerHTML += this.createDeleteButton();
     return todoLi;
   }
 };
