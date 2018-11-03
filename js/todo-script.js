@@ -22,15 +22,19 @@ const todoList = {
       todoText: todoText,
       completed: false
     });
+    this.storeTodos();
   },
   changeTodo: function(position, todoText) {
     this.todos[position].todoText = todoText;
+    this.storeTodos();
   },
   deleteTodo: function(position) {
     this.todos.splice(position, 1);
+    this.storeTodos();
   },
   deleteCompletedTodos: function() {
     this.todos = this.todos.filter(todo => todo.completed === false);
+    this.storeTodos();
   },
   isAllCompleted: function() {
     return this.todos.length === this.todosCompletedCount();
@@ -38,13 +42,23 @@ const todoList = {
   toggleCompleted: function(position) {
     let todo = this.todos[position];
     todo.completed = !todo.completed;
+    this.storeTodos();
   },
   toggleAll: function() {
     let isAllCompleted = this.isAllCompleted();
     this.todos.forEach(todo => (todo.completed = !isAllCompleted));
+    this.storeTodos();
   },
   todosCompletedCount: function() {
     return this.todos.filter(todo => todo.completed).length;
+  },
+  storeTodos: function() {
+    localStorage.setItem("todos", JSON.stringify(todoList.todos));
+  },
+  getStoredTodos: function() {
+    if (localStorage.getItem("todos") !== null) {
+      this.todos = JSON.parse(localStorage.getItem("todos"));
+    }
   }
 };
 
@@ -114,10 +128,13 @@ const htmlCreator = {
         <label for="toggleCheckbox${position}"></label>
       </div>
     </div>`,
-  createTodoTextLabel: (todo) => `
-    ${todo.completed ?
-      `<label class="textLabel textBar completed">${todo.todoText}<label>` :
-      `<label class="textLabel textBar" contenteditable="true">${todo.todoText}<label>`
+  createTodoTextLabel: todo => `
+    ${
+      todo.completed
+        ? `<label class="textLabel textBar completed">${todo.todoText}<label>`
+        : `<label class="textLabel textBar" contenteditable="true">${
+            todo.todoText
+          }<label>`
     }`,
   createTodoListItem: function(todo, position) {
     let todoLi = createElem("li");
@@ -231,7 +248,9 @@ const eventListeners = {
 
       // Check if elementClicked is a delete button.
       if (elementClicked.classList.contains("deleteBtn")) {
-        handlers.deleteTodo(parseInt(elementClicked.parentNode.id.slice("todo".length)));
+        handlers.deleteTodo(
+          parseInt(elementClicked.parentNode.id.slice("todo".length))
+        );
 
         if (todoList.todosCompletedCount() !== 0 && todoList.isAllCompleted()) {
           toggleAllCheckbox.checked = true;
@@ -318,3 +337,8 @@ const eventListeners = {
 };
 
 eventListeners.setUpEventListeners();
+todoList.getStoredTodos();
+if (todoList.todos.length > 0) {
+  view.displayTodosAndItemCount();
+  view.displayFooterAndToggleAllCheckbox();
+}
