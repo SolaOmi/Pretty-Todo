@@ -197,7 +197,7 @@ button::-moz-focus-inner {
     font-size: 12px;
   }
 
-  main, footer {
+  main, footer, #addTodoTextInput {
     width: 80%;
   }
 }
