@@ -114,7 +114,7 @@ footer {
 #itemCount {
   align-items: center;
   display: flex;
-  margin-left: 20px;
+  margin: 0 1.0rem;
   text-align: left;
 }
 
