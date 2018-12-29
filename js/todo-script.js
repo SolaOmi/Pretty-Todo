@@ -185,7 +185,7 @@ const view = {
   },
   displayItemCount: function() {
     let itemCount = todoList.todos.length - todoList.todosCompletedCount();
-    todoItemCount.textContent = itemCount + " items left";
+    todoItemCount.textContent = itemCount;
   },
   displayFooterAndToggleAllCheckbox: function() {
     /*
