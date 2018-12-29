@@ -34,6 +34,7 @@ body {
 body {
   background-color: #f0f8ff;
   font-family: sans-serif;
+  padding-bottom: 2.0rem;
   text-align: center;
 }
 
@@ -191,9 +192,12 @@ button::-moz-focus-inner {
 }
 
 /* ---8--- */
-@media (max-width: 600px) {
-  footer,
-  #clearCompleted {
+@media (max-width: 650px) {
+  footer, #clearCompleted {
     font-size: 12px;
+  }
+
+  main, footer {
+    width: 80%;
   }
 }
