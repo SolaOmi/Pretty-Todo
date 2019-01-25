@@ -105,7 +105,6 @@ header div {
 
 /* --- 4 --- */
 footer {
-  color: #777;
   display: grid;
   grid-template-columns: 3fr 4fr 3fr;
   height: 50px;
@@ -160,7 +159,7 @@ button::-moz-focus-inner {
 }
 
 .selected {
-  border: 1px solid #808080;
+  border: 1px solid black;
 }
 
 .completed {
