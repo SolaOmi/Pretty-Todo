@@ -119,7 +119,7 @@ const handlers = {
 };
 
 const htmlCreator = {
-  createDeleteButton: () => `<button class="deleteBtn"></button>`,
+  createDeleteButton: () => `<button class="deleteBtn" aria-label="Close"></button>`,
   createInputCheckbox: (isChecked, position) => `
     <div class="container">
       <div class="round toggleCheckbox" id="shownToggleCheckbox${position}">
