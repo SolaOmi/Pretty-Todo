@@ -194,7 +194,11 @@ const view = {
        (shownToggleAllCheckbox) becomes visible.
     */
     if (!shownToggleAllCheckbox.classList.toggle("invisible")) {
-      toggleAllCheckbox.checked = false;
+      if (todoList.todos.length === todoList.todosCompletedCount()) {
+        toggleAllCheckbox.checked = true;
+      } else {
+        toggleAllCheckbox.checked = false;
+      }
     }
     todoFooter.classList.toggle("invisible");
   },
@@ -338,6 +342,7 @@ const eventListeners = {
 
 eventListeners.setUpEventListeners();
 todoList.getStoredTodos();
+
 if (todoList.todos.length > 0) {
   view.displayTodosAndItemCount();
   view.displayFooterAndToggleAllCheckbox();
