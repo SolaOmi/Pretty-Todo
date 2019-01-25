@@ -164,7 +164,6 @@ button::-moz-focus-inner {
 }
 
 .completed {
-  color: #d9d9d9;
   text-decoration: line-through;
 }
 
